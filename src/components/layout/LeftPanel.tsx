@@ -5,9 +5,13 @@ import Divider from '@/components/ui/Divider';
 import GearFeed from '@/components/gear/GearFeed';
 import WaypointFeed from '@/components/route/WaypointFeed';
 import { useExpedition } from '@/lib/expeditionContext';
+import { useMapContext } from '@/lib/mapContext';
 
 export default function LeftPanel() {
   const expedition = useExpedition();
+  const { panelState } = useMapContext();
+  const expanded = panelState === 'expanded';
+
   return (
     <div className="flex flex-col h-full px-4 py-4">
       {/* Header */}
@@ -26,19 +30,33 @@ export default function LeftPanel() {
 
       <Divider className="mb-5 flex-shrink-0" />
 
-      {/* Gear section */}
-      <div className="flex-shrink-0">
-        <SectionHeader label="Gear Manifest" accent="orange" />
-        <GearFeed />
-      </div>
-
-      <Divider className="my-5 flex-shrink-0" />
-
-      {/* Route section */}
-      <div className="flex-shrink-0 pb-6">
-        <SectionHeader label="Route Waypoints" accent="cyan" />
-        <WaypointFeed />
-      </div>
+      {expanded ? (
+        /* Two-column layout when expanded */
+        <div className="flex flex-1 gap-0 min-h-0 overflow-y-auto">
+          <div className="flex-1 min-w-0 pr-4 overflow-y-auto">
+            <SectionHeader label="Gear Manifest" accent="orange" />
+            <GearFeed />
+          </div>
+          <div className="w-px bg-neutral-900 flex-shrink-0" />
+          <div className="flex-1 min-w-0 pl-4 pb-6 overflow-y-auto">
+            <SectionHeader label="Route Waypoints" accent="cyan" />
+            <WaypointFeed />
+          </div>
+        </div>
+      ) : (
+        /* Single-column layout when normal */
+        <div className="flex-1 overflow-y-auto">
+          <div className="flex-shrink-0">
+            <SectionHeader label="Gear Manifest" accent="orange" />
+            <GearFeed />
+          </div>
+          <Divider className="my-5" />
+          <div className="flex-shrink-0 pb-6">
+            <SectionHeader label="Route Waypoints" accent="cyan" />
+            <WaypointFeed />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

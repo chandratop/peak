@@ -15,7 +15,7 @@ export const EXPEDITIONS: Expedition[] = [
     slug: 'kalanag',
     peakName: 'KALANAG',
     elevationM: 6387,
-    region: 'Har-ki-Dun · Uttarakhand · India',
+    region: 'Black Peak · Uttarakhand · India',
     pageTitle: 'PEAK — Kalanag Expedition Dashboard',
     pageDescription: '3D wireframe mountain mapping and expedition logistics for Kalanag (Black Peak)',
     mapView: { center: [78.5681, 31.0264], zoom: 12, pitch: 60, bearing: -20 },

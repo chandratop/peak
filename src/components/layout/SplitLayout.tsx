@@ -3,11 +3,9 @@
 import { useRef, useState, type ReactNode } from 'react';
 import type { Map as MapboxMap } from 'mapbox-gl';
 import { ChevronLeft, ChevronRight, Maximize2, Minimize2 } from 'lucide-react';
-import { MapContext, type MapStyleMode } from '@/lib/mapContext';
+import { MapContext, type MapStyleMode, type PanelState } from '@/lib/mapContext';
 import { ExpeditionContext } from '@/lib/expeditionContext';
 import type { Expedition } from '@/lib/expeditions';
-
-type PanelState = 'normal' | 'expanded' | 'collapsed';
 
 interface SplitLayoutProps {
   children: [ReactNode, ReactNode];
@@ -41,7 +39,7 @@ export default function SplitLayout({ children, expedition }: SplitLayoutProps) 
 
   return (
     <ExpeditionContext.Provider value={expedition}>
-      <MapContext.Provider value={{ mapRef, mapStyle, setMapStyle }}>
+      <MapContext.Provider value={{ mapRef, mapStyle, setMapStyle, panelState }}>
         <div className="relative h-screen w-screen overflow-hidden bg-amoled min-w-[1024px]">
 
           {/* Map — always fills the full viewport */}
