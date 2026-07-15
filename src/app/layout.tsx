@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { JetBrains_Mono } from 'next/font/google';
 import './globals.css';
-import { EXPEDITION } from '@/lib/expedition.config';
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
@@ -11,8 +10,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: EXPEDITION.pageTitle,
-  description: EXPEDITION.pageDescription,
+  title: {
+    default: 'PEAK',
+    template: '%s | PEAK',
+  },
+  description: 'Tactical mountaineering expedition dashboard',
 };
 
 export default function RootLayout({

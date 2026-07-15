@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import type { GearItem, GearCategory, GearStatus, GearPriority } from '@/types/gear';
 import { BASE_PATH } from '@/lib/expedition.config';
+import { useExpedition } from '@/lib/expeditionContext';
 
 interface UseGearManifestResult {
   items: GearItem[];
@@ -12,12 +13,15 @@ interface UseGearManifestResult {
 }
 
 export function useGearManifest(): UseGearManifestResult {
+  const { slug } = useExpedition();
   const [items, setItems] = useState<GearItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`${BASE_PATH}/data/gear-manifest.csv`)
+    setLoading(true);
+    setItems([]);
+    fetch(`${BASE_PATH}/data/${slug}/gear-manifest.csv`)
       .then((res) => {
         if (!res.ok) throw new Error(`Failed to fetch gear manifest: ${res.status}`);
         return res.text();
@@ -45,7 +49,7 @@ export function useGearManifest(): UseGearManifestResult {
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [slug]);
 
   return { items, loading, error };
 }

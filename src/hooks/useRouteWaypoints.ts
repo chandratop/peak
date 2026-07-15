@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import type { RouteWaypointsFile } from '@/types/route';
 import { BASE_PATH } from '@/lib/expedition.config';
+import { useExpedition } from '@/lib/expeditionContext';
 
 interface UseRouteWaypointsResult {
   data: RouteWaypointsFile | null;
@@ -11,12 +12,15 @@ interface UseRouteWaypointsResult {
 }
 
 export function useRouteWaypoints(): UseRouteWaypointsResult {
+  const { slug } = useExpedition();
   const [data, setData] = useState<RouteWaypointsFile | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`${BASE_PATH}/data/route-waypoints.json`)
+    setLoading(true);
+    setData(null);
+    fetch(`${BASE_PATH}/data/${slug}/route-waypoints.json`)
       .then((res) => {
         if (!res.ok) throw new Error(`Failed to fetch waypoints: ${res.status}`);
         return res.json() as Promise<RouteWaypointsFile>;
@@ -29,7 +33,7 @@ export function useRouteWaypoints(): UseRouteWaypointsResult {
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [slug]);
 
   return { data, loading, error };
 }

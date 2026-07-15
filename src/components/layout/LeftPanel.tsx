@@ -1,10 +1,13 @@
+'use client';
+
 import SectionHeader from '@/components/ui/SectionHeader';
 import Divider from '@/components/ui/Divider';
 import GearFeed from '@/components/gear/GearFeed';
 import WaypointFeed from '@/components/route/WaypointFeed';
-import { EXPEDITION } from '@/lib/expedition.config';
+import { useExpedition } from '@/lib/expeditionContext';
 
 export default function LeftPanel() {
+  const expedition = useExpedition();
   return (
     <div className="flex flex-col h-full px-4 py-4">
       {/* Header */}
@@ -13,11 +16,11 @@ export default function LeftPanel() {
           EXPEDITION DASHBOARD
         </p>
         <h1 className="text-white font-mono text-sm tracking-widest uppercase">
-          {EXPEDITION.peakName}
-          <span className="text-neon-orange ml-2 text-xs">{EXPEDITION.elevationM}m</span>
+          {expedition.peakName}
+          <span className="text-neon-orange ml-2 text-xs">{expedition.elevationM}m</span>
         </h1>
         <p className="text-neutral-600 text-2xs font-mono mt-0.5">
-          {EXPEDITION.region}
+          {expedition.region}
         </p>
       </div>
 

@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { MAPBOX_TOKEN, LAYER_IDS } from '@/lib/mapboxConfig';
-import { EXPEDITION } from '@/lib/expedition.config';
+import { useExpedition } from '@/lib/expeditionContext';
 import { getBaseStyle } from './mapStyles';
 import {
   addTerrain,
@@ -21,6 +21,7 @@ import { useMapContext } from '@/lib/mapContext';
 export default function MapView() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { mapRef, mapStyle } = useMapContext();
+  const expedition = useExpedition();
   const { geojson: gpxGeoJson } = useGpxTrack();
   const { data: routeData } = useRouteWaypoints();
 
@@ -51,10 +52,10 @@ export default function MapView() {
       container: containerRef.current,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       style: getBaseStyle('wireframe') as any,
-      center: EXPEDITION.mapView.center,
-      zoom: EXPEDITION.mapView.zoom,
-      pitch: EXPEDITION.mapView.pitch,
-      bearing: EXPEDITION.mapView.bearing,
+      center: expedition.mapView.center,
+      zoom: expedition.mapView.zoom,
+      pitch: expedition.mapView.pitch,
+      bearing: expedition.mapView.bearing,
       antialias: true,
       attributionControl: true,
     });
@@ -123,7 +124,7 @@ export default function MapView() {
     <div
       ref={containerRef}
       className="w-full h-full"
-      aria-label={`3D topographic map of ${EXPEDITION.peakName}`}
+      aria-label={`3D topographic map of ${expedition.peakName}`}
     />
   );
 }
