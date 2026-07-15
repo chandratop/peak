@@ -1,0 +1,34 @@
+{
+  "name": "peak",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@radix-ui/react-separator": "^1.1.11",
+    "@radix-ui/react-tooltip": "^1.2.12",
+    "@tmcw/togeojson": "^5.8.1",
+    "lucide-react": "^0.400.0",
+    "mapbox-gl": "^3.26.0",
+    "next": "^16.2.10",
+    "papaparse": "^5.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/geojson": "^7946.0.16",
+    "@types/mapbox-gl": "^3.4.1",
+    "@types/node": "^20.19.43",
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "autoprefixer": "^10.5.3",
+    "postcss": "^8.5.19",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3"
+  }
+}

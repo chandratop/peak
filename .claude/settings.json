@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/chandratop/dev/github/chandratop/peak show --stat HEAD)",
+      "Bash(npx create-next-app@14.2.5 . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git)",
+      "Bash(npm init *)"
+    ]
+  }
+}

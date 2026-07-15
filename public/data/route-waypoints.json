@@ -1,0 +1,94 @@
+{
+  "metadata": {
+    "route_name": "Kalanag South Ridge",
+    "peak_name": "Kalanag",
+    "summit_elevation_m": 6387,
+    "total_distance_km": 42,
+    "total_gain_m": 4467,
+    "region": "Har-ki-Dun, Uttarakhand, India"
+  },
+  "waypoints": [
+    {
+      "id": "sankri",
+      "name": "Sankri Village",
+      "lat": 30.9748,
+      "lng": 78.1879,
+      "elevation_m": 1920,
+      "camp_type": "basecamp",
+      "description": "Road head and acclimatisation stop. Last ATM and phone signal.",
+      "distance_from_start_km": 0
+    },
+    {
+      "id": "taluka",
+      "name": "Taluka",
+      "lat": 31.0012,
+      "lng": 78.3541,
+      "elevation_m": 2400,
+      "camp_type": "waypoint",
+      "description": "Trail junction — bridge crossing over Supin River.",
+      "distance_from_start_km": 12,
+      "max_grade_pct": 12,
+      "min_grade_pct": 1
+    },
+    {
+      "id": "osla",
+      "name": "Osla Village",
+      "lat": 31.0198,
+      "lng": 78.4432,
+      "elevation_m": 2760,
+      "camp_type": "camp",
+      "description": "Last permanent habitation. Resupply opportunity. Temple of Someshwar.",
+      "distance_from_start_km": 22,
+      "max_grade_pct": 18,
+      "min_grade_pct": 1
+    },
+    {
+      "id": "bc",
+      "name": "Base Camp",
+      "lat": 31.0264,
+      "lng": 78.5100,
+      "elevation_m": 3800,
+      "camp_type": "basecamp",
+      "description": "Main base camp on open meadow. Water from glacial stream. Full rest day recommended.",
+      "distance_from_start_km": 30,
+      "max_grade_pct": 38,
+      "min_grade_pct": 8
+    },
+    {
+      "id": "abc",
+      "name": "Advanced Base Camp",
+      "lat": 31.0264,
+      "lng": 78.5350,
+      "elevation_m": 4600,
+      "camp_type": "camp",
+      "description": "Snow line begins. Crampons may be needed. Fixed tents.",
+      "distance_from_start_km": 35,
+      "max_grade_pct": 55,
+      "min_grade_pct": 12
+    },
+    {
+      "id": "hc1",
+      "name": "High Camp 1",
+      "lat": 31.0264,
+      "lng": 78.5560,
+      "elevation_m": 5400,
+      "camp_type": "highcamp",
+      "description": "Exposed ridge camp. Crampons required. Crevasse hazard on approach.",
+      "distance_from_start_km": 39,
+      "max_grade_pct": 68,
+      "min_grade_pct": 22
+    },
+    {
+      "id": "summit",
+      "name": "Kalanag Summit",
+      "lat": 31.0264,
+      "lng": 78.5681,
+      "elevation_m": 6387,
+      "camp_type": "summit",
+      "description": "Broad icy plateau. 360° views: Swargarohini, Bandarpunch, Gangotri range.",
+      "distance_from_start_km": 42,
+      "max_grade_pct": 72,
+      "min_grade_pct": 35
+    }
+  ]
+}

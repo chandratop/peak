@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-accent-orange: #ff6b2b;
+    --color-accent-cyan: #00d4ff;
+  }
+
+  html,
+  body {
+    background-color: #000000;
+    color: #ffffff;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* 2px tactical scrollbar */
+  ::-webkit-scrollbar {
+    width: 2px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(64 64 64);
+    border-radius: 1px;
+  }
+}
+
+/* Mapbox GL overrides */
+.mapboxgl-canvas {
+  outline: none;
+}
+
+/* Style NavigationControl to match AMOLED theme */
+.mapboxgl-ctrl-group {
+  background: rgba(0, 0, 0, 0.85) !important;
+  border: 1px solid rgb(38 38 38) !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+.mapboxgl-ctrl-group button {
+  background: transparent !important;
+  color: rgb(115 115 115) !important;
+  border-bottom: 1px solid rgb(23 23 23) !important;
+  width: 26px !important;
+  height: 26px !important;
+}
+.mapboxgl-ctrl-group button:last-child {
+  border-bottom: none !important;
+}
+.mapboxgl-ctrl-group button:hover {
+  background: rgb(23 23 23) !important;
+  color: #00d4ff !important;
+}
+.mapboxgl-ctrl-group button .mapboxgl-ctrl-icon {
+  filter: invert(0.5);
+}
+.mapboxgl-ctrl-group button:hover .mapboxgl-ctrl-icon {
+  filter: invert(1) sepia(1) saturate(3) hue-rotate(155deg);
+}
+
+/* Keep Mapbox attribution for ToS compliance but style it minimally */
+.mapboxgl-ctrl-attrib {
+  background: transparent !important;
+  font-size: 9px !important;
+  opacity: 0.4;
+}
+.mapboxgl-ctrl-attrib a {
+  color: rgb(115 115 115) !important;
+}
+.mapboxgl-ctrl-logo {
+  display: none !important;
+}

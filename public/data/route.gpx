@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Peak Dashboard" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>Kalanag South Ridge Route</name>
+    <desc>Expedition route from Sankri to Kalanag summit via Har-ki-Dun valley</desc>
+  </metadata>
+  <trk>
+    <name>Kalanag Route</name>
+    <trkseg>
+      <trkpt lat="30.9748" lon="78.1879"><ele>1920</ele></trkpt>
+      <trkpt lat="30.9820" lon="78.2200"><ele>2050</ele></trkpt>
+      <trkpt lat="30.9890" lon="78.2560"><ele>2180</ele></trkpt>
+      <trkpt lat="30.9950" lon="78.2980"><ele>2290</ele></trkpt>
+      <trkpt lat="31.0012" lon="78.3541"><ele>2400</ele></trkpt>
+      <trkpt lat="31.0060" lon="78.3820"><ele>2520</ele></trkpt>
+      <trkpt lat="31.0110" lon="78.4100"><ele>2630</ele></trkpt>
+      <trkpt lat="31.0198" lon="78.4432"><ele>2760</ele></trkpt>
+      <trkpt lat="31.0230" lon="78.4680"><ele>2980</ele></trkpt>
+      <trkpt lat="31.0250" lon="78.4870"><ele>3200</ele></trkpt>
+      <trkpt lat="31.0264" lon="78.5100"><ele>3800</ele></trkpt>
+      <trkpt lat="31.0264" lon="78.5220"><ele>4100</ele></trkpt>
+      <trkpt lat="31.0264" lon="78.5350"><ele>4600</ele></trkpt>
+      <trkpt lat="31.0264" lon="78.5450"><ele>4900</ele></trkpt>
+      <trkpt lat="31.0264" lon="78.5560"><ele>5400</ele></trkpt>
+      <trkpt lat="31.0264" lon="78.5600"><ele>5700</ele></trkpt>
+      <trkpt lat="31.0264" lon="78.5640"><ele>6050</ele></trkpt>
+      <trkpt lat="31.0264" lon="78.5681"><ele>6387</ele></trkpt>
+    </trkseg>
+  </trk>
+</gpx>
