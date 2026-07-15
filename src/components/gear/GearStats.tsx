@@ -12,7 +12,7 @@ export default function GearStats({ items }: GearStatsProps) {
   const stats = useMemo(() => {
     const packed = items.filter((i) => i.status === 'packed');
     const criticalUnpacked = items.filter(
-      (i) => i.priority === 'critical' && i.status === 'needed'
+      (i) => i.priority === 'critical' && i.status === 'pending'
     );
     const total = totalWeight(items);
     const packedW = totalWeight(packed);

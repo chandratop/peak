@@ -10,7 +10,7 @@ export default function GearItem({ item }: GearItemProps) {
   return (
     <div
       className={`flex items-center justify-between py-1.5 px-2 border-b border-neutral-900 hover:bg-neutral-950 transition-colors ${
-        item.priority === 'critical' && item.status === 'needed'
+        item.priority === 'critical' && item.status === 'pending'
           ? 'border-l border-l-neon-orange/30'
           : ''
       }`}

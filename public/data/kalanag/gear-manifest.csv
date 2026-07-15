@@ -2,16 +2,16 @@ item_name,category,weight_g,qty,status,priority
 Down Jacket,clothing,650,1,packed,critical
 Hardshell Jacket,clothing,480,1,packed,critical
 Softshell Pants,clothing,320,1,packed,critical
-Waterproof Pants,clothing,280,1,needed,critical
+Waterproof Pants,clothing,280,1,pending,critical
 Thermal Base Layer Top,clothing,180,2,packed,critical
 Thermal Base Layer Bottom,clothing,160,2,packed,critical
 Down Sleeping Bag (-20C),shelter,1350,1,packed,critical
-4-Season Tent,shelter,1800,1,needed,critical
+4-Season Tent,shelter,1800,1,pending,critical
 Sleeping Pad,shelter,390,1,packed,critical
-Crampons,technical,1200,1,needed,critical
+Crampons,technical,1200,1,pending,critical
 Ice Axe,technical,640,1,packed,critical
 Harness,technical,430,1,packed,critical
-Rope 50m,technical,2800,1,needed,critical
+Rope 50m,technical,2800,1,pending,critical
 Carabiners,technical,260,6,packed,critical
 Helmet,technical,320,1,packed,critical
 Trekking Poles,technical,480,2,packed,optional
@@ -22,10 +22,10 @@ GPS Device,navigation,195,1,packed,critical
 Topographic Map,navigation,80,2,packed,critical
 Compass,navigation,35,1,packed,critical
 First Aid Kit,medical,450,1,packed,critical
-Altitude Medication,medical,80,1,needed,critical
+Altitude Medication,medical,80,1,pending,critical
 Blister Treatment,medical,60,1,packed,optional
-High-Altitude Food,food,3200,1,needed,critical
+High-Altitude Food,food,3200,1,pending,critical
 Cooking Stove,food,430,1,packed,critical
-Fuel Canisters,food,390,2,needed,critical
+Fuel Canisters,food,390,2,pending,critical
 Water Purification Tablets,food,45,1,packed,critical
 Insulated Water Bottle,food,280,2,packed,critical

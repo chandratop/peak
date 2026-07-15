@@ -25,7 +25,10 @@ export default function MapView() {
   const { geojson: gpxGeoJson } = useGpxTrack();
   const { data: routeData } = useRouteWaypoints();
 
-  // Refs so the styledata handler can always read the latest data
+  // Track whether the map's initial 'load' has fired — more reliable than isStyleLoaded()
+  const mapLoadedRef = useRef(false);
+
+  // Refs so async handlers always see the latest data
   const gpxRef = useRef(gpxGeoJson);
   const routeRef = useRef(routeData);
   useEffect(() => { gpxRef.current = gpxGeoJson; }, [gpxGeoJson]);
@@ -67,11 +70,15 @@ export default function MapView() {
 
     mapRef.current = map;
 
-    map.on('load', () => applyCustomLayers(map, 'wireframe'));
+    map.on('load', () => {
+      mapLoadedRef.current = true;
+      applyCustomLayers(map, 'wireframe');
+    });
 
     return () => {
       map.remove();
       mapRef.current = null;
+      mapLoadedRef.current = false;
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -83,40 +90,53 @@ export default function MapView() {
     const map = mapRef.current;
     if (!map) return;
 
+    mapLoadedRef.current = false;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     map.setStyle(getBaseStyle(mapStyle) as any);
 
-    // 'style.load' fires exactly once when the new style is fully ready
-    const onStyleLoad = () => applyCustomLayers(map, mapStyle);
+    const onStyleLoad = () => {
+      mapLoadedRef.current = true;
+      applyCustomLayers(map, mapStyle);
+    };
     map.once('style.load', onStyleLoad);
 
     return () => { map.off('style.load', onStyleLoad); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mapStyle]);
 
-  // Add waypoint markers once route data arrives (initial load)
+  // Add waypoint markers once route data arrives after initial map load
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !routeData) return;
-    const add = () => {
+    if (mapLoadedRef.current) {
       if (!map.getSource(LAYER_IDS.waypointSourceId)) {
         addWaypointMarkers(map, routeData.waypoints);
       }
-    };
-    map.isStyleLoaded() ? add() : map.once('load', add);
+    } else {
+      map.once('load', () => {
+        if (!map.getSource(LAYER_IDS.waypointSourceId)) {
+          addWaypointMarkers(map, routeData.waypoints);
+        }
+      });
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routeData]);
 
-  // Add GPX route once GPX data arrives (initial load)
+  // Add GPX route once GPX data arrives after initial map load
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !gpxGeoJson) return;
-    const add = () => {
+    if (mapLoadedRef.current) {
       if (!map.getSource(LAYER_IDS.routeSourceId)) {
         addGpxRoute(map, gpxGeoJson);
       }
-    };
-    map.isStyleLoaded() ? add() : map.once('load', add);
+    } else {
+      map.once('load', () => {
+        if (!map.getSource(LAYER_IDS.routeSourceId)) {
+          addGpxRoute(map, gpxGeoJson);
+        }
+      });
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gpxGeoJson]);
 

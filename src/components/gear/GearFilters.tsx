@@ -6,7 +6,7 @@ const CATEGORIES: GearCategory[] = [
   'clothing', 'shelter', 'technical', 'navigation', 'medical', 'food', 'electronics', 'misc',
 ];
 
-const STATUSES: GearStatus[] = ['packed', 'needed'];
+const STATUSES: GearStatus[] = ['packed', 'pending'];
 
 interface GearFiltersProps {
   activeCategory: GearCategory | null;

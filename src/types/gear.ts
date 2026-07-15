@@ -1,4 +1,4 @@
-export type GearStatus = 'packed' | 'needed';
+export type GearStatus = 'packed' | 'pending';
 export type GearPriority = 'critical' | 'optional';
 export type GearCategory =
   | 'clothing'

@@ -38,7 +38,7 @@ export function useGearManifest(): UseGearManifestResult {
           category: (row.category ?? 'misc') as GearCategory,
           weight_g: Number(row.weight_g) || 0,
           qty: Number(row.qty) || 1,
-          status: (row.status ?? 'needed') as GearStatus,
+          status: (row.status ?? 'pending') as GearStatus,
           priority: (row.priority ?? 'optional') as GearPriority,
         }));
 
