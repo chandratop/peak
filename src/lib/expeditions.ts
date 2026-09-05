@@ -18,7 +18,7 @@ export const EXPEDITIONS: Expedition[] = [
     region: 'Black Peak · Uttarakhand · India',
     pageTitle: 'PEAK — Kalanag Expedition Dashboard',
     pageDescription: '3D wireframe mountain mapping and expedition logistics for Kalanag (Black Peak)',
-    mapView: { center: [78.5681, 31.0264], zoom: 12, pitch: 60, bearing: -20 },
+    mapView: { center: [78.42, 31.085], zoom: 10.3, pitch: 45, bearing: -10 },
   },
 ];
 

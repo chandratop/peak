@@ -23,10 +23,18 @@ export default function WaypointFeed() {
   );
 
   const summaryStats = (
+    <>
+    {data.metadata.route_note && <div className="mb-3 border border-neon-cyan/30 p-3 text-xs text-neutral-300">
+      <p className="text-neon-cyan mb-1">Planning overview · not for navigation</p>
+      <p>{data.metadata.route_note}</p>
+      <p className="mt-2 text-neutral-400">Totals below cover Taluka → Ruinsara only. GPX ascent includes elevation fluctuations.</p>
+      <a href="https://www.cicerone.co.uk/trekking-in-the-indian-himalayas" target="_blank" rel="noreferrer" className="underline block mt-2">Approach: Cicerone / Brian Furze</a>
+      <a href="https://www.openstreetmap.org/node/7673848541" target="_blank" rel="noreferrer" className="underline block mt-1">Kyarkoti locality: © OpenStreetMap contributors</a>
+    </div>}
     <div className="mb-3 grid grid-cols-3 gap-px bg-neutral-900 border border-neutral-900">
       {[
-        { label: 'DISTANCE', value: `${data.metadata.total_distance_km} km` },
-        { label: 'GAIN', value: `${data.metadata.total_gain_m} m` },
+        { label: data.metadata.coverage ? 'APPROACH' : 'DISTANCE', value: `${data.metadata.total_distance_km} km` },
+        { label: data.metadata.coverage ? 'GPX ASCENT' : 'GAIN', value: `${data.metadata.total_gain_m} m` },
         { label: 'SUMMIT', value: `${data.metadata.summit_elevation_m} m` },
       ].map((stat) => (
         <div key={stat.label} className="bg-amoled px-2 py-1.5">
@@ -35,6 +43,12 @@ export default function WaypointFeed() {
         </div>
       ))}
     </div>
+    {data.metadata.planning_outline && <div className="mb-4">
+      <p className="text-2xs text-neutral-400 mb-1">Beyond the supplied track · approximate locations</p>
+      {data.metadata.planning_outline.slice(1).map(point => <button key={point.name} onClick={() => focusWaypoint(point.lng, point.lat)} className="min-h-11 w-full text-left text-xs text-neon-cyan border-b border-dashed border-neutral-700">{point.name} ↗</button>)}
+      <p className="text-2xs text-neutral-400 mt-2">Kyarkoti is an area marker, not a confirmed campsite. Camp 1–3 positions await Discovery Hike’s track.</p>
+    </div>}
+    </>
   );
 
   if (panelState !== 'expanded') {

@@ -14,7 +14,16 @@ export interface Waypoint {
   min_grade_pct?: number;
 }
 
+export interface PlanningPoint {
+  name: string;
+  lng: number;
+  lat: number;
+}
+
 export interface RouteMetadata {
+  coverage?: 'approach-only';
+  route_note?: string;
+  planning_outline?: PlanningPoint[];
   route_name: string;
   peak_name: string;
   summit_elevation_m: number;

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 test('dashboard data, panels and filters work without horizontal overflow', async ({ page }, info) => {
   await page.goto('/');
   await page.getByRole('link', { name: /KALANAG/ }).click();
-  await expect(page.getByText('42 km', { exact: true })).toBeVisible();
+  await expect(page.getByText('25.6 km', { exact: true })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   if (info.project.name === 'mobile') await page.getByRole('tab', { name: 'gear', exact: true }).click();
   await page.getByRole('button', { name: 'Expand details' }).click();
@@ -37,4 +37,11 @@ test('viewport changes keep details usable', async ({ page }) => {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await expect(page.getByRole('button', { name: 'Hide details' })).toBeInViewport();
   }
+});
+
+test('planning route distinguishes the supplied approach from the unknown climb', async ({ page }) => {
+  await page.goto('/kalanag/');
+  await expect(page.getByText('Planning overview · not for navigation', { exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Kyarkoti area/ })).toBeVisible();
+  await expect(page.getByText('25.6 km', { exact: true })).toBeVisible();
 });

@@ -1,6 +1,6 @@
 import type { Map as MapboxMap, GeoJSONSource } from 'mapbox-gl';
 import type { Feature, LineString, MultiLineString, FeatureCollection, Point } from 'geojson';
-import type { Waypoint } from '@/types/route';
+import type { Waypoint, PlanningPoint } from '@/types/route';
 import { LAYER_IDS } from '@/lib/mapboxConfig';
 
 export function addTerrain(map: MapboxMap): void {
@@ -200,4 +200,20 @@ export function addWaypointMarkers(map: MapboxMap, waypoints: Waypoint[]): void 
       'circle-opacity': 0.95,
     },
   });
+}
+
+// Diagram only: kept out of route.gpx so it cannot be mistaken for a recorded course.
+export function addPlanningOutline(map: MapboxMap, points: PlanningPoint[] = []): void {
+  const data: FeatureCollection<LineString | Point> = {
+    type: 'FeatureCollection',
+    features: points.length < 2 ? [] : [
+      { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: points.map(p => [p.lng, p.lat]) } },
+      ...points.slice(1).map(p => ({ type: 'Feature' as const, properties: { name: p.name }, geometry: { type: 'Point' as const, coordinates: [p.lng, p.lat] } })),
+    ],
+  };
+  const source = map.getSource('peak-planning-outline') as GeoJSONSource | undefined;
+  if (source) { source.setData(data); return; }
+  map.addSource('peak-planning-outline', { type: 'geojson', data });
+  map.addLayer({ id: 'peak-planning-line', type: 'line', source: 'peak-planning-outline', filter: ['==', ['geometry-type'], 'LineString'], paint: { 'line-color': '#00d4ff', 'line-width': 2, 'line-dasharray': [3, 3], 'line-opacity': 0.7 } });
+  map.addLayer({ id: 'peak-planning-points', type: 'circle', source: 'peak-planning-outline', filter: ['==', ['geometry-type'], 'Point'], paint: { 'circle-radius': 5, 'circle-color': '#000000', 'circle-stroke-color': '#00d4ff', 'circle-stroke-width': 2 } });
 }
