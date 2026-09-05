@@ -89,7 +89,7 @@ export default function MapView() {
   }, [gpx.geojson, route.data, mapRef]);
 
   const message = !MAPBOX_TOKEN ? 'Set NEXT_PUBLIC_MAPBOX_TOKEN to display the map.' : error ?? gpx.error ?? route.error;
-  return <><div ref={containerRef} className="w-full h-full" aria-label={`3D topographic map of ${expedition.peakName}`} />{route.data?.metadata.planning_outline && <div className="absolute top-20 right-3 bg-black/90 p-2 text-2xs text-neutral-300 border border-neutral-800 pointer-events-none">
+  return <><div ref={containerRef} className="w-full h-full" aria-label={`3D topographic map of ${expedition.peakName}`} />{route.data?.metadata.planning_outline && <div className="absolute top-20 right-16 bg-black/90 p-2 text-2xs text-neutral-300 border border-neutral-800 pointer-events-none">
     <p className="text-neon-orange">━━ Publisher approach</p><p className="text-neon-cyan">┄┄ Planning outline only</p><p>Not for navigation</p>
-  </div>}{message && <p role="status" className="absolute top-40 right-3 max-w-64 bg-black/90 border border-neutral-700 p-3 text-xs text-orange-300">{message}</p>}</>;
+  </div>}{message && <p role="status" className="absolute top-40 right-16 max-w-64 bg-black/90 border border-neutral-700 p-3 text-xs text-orange-300">{message}</p>}</>;
 }
