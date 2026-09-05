@@ -3,8 +3,8 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   output: 'export',
 
-  basePath: '/peak',
-  assetPrefix: '/peak/',
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH ?? '',
+  trailingSlash: true,
 
   images: { unoptimized: true },
 

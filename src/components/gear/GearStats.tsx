@@ -24,7 +24,7 @@ export default function GearStats({ items }: GearStatsProps) {
   const cells = [
     { label: 'TOTAL WEIGHT', value: formatWeight(stats.total) },
     { label: 'PACKED WEIGHT', value: formatWeight(stats.packedW) },
-    { label: 'PACKED', value: `${stats.packedPct}%` },
+    { label: 'ITEM TYPES PACKED', value: `${stats.packedPct}%` },
     { label: 'CRITICAL NEEDED', value: String(stats.criticalUnpacked), alert: stats.criticalUnpacked > 0 },
   ];
 
@@ -36,9 +36,7 @@ export default function GearStats({ items }: GearStatsProps) {
             {cell.label}
           </p>
           <p
-            className={`text-sm font-mono font-light ${
-              cell.alert ? 'text-neon-orange' : 'text-neon-orange'
-            }`}
+            className="text-sm font-mono font-light text-neon-orange"
           >
             {cell.value}
           </p>

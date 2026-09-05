@@ -59,13 +59,13 @@ The gear manifest lives at `public/data/kalanag/gear-manifest.csv`. Edit it dire
 Satellite Phone,electronics,290,1,pending,critical
 ```
 
-**With Claude:** Open the repo in Claude Code and say _"add a satellite phone (290g, electronics, critical, pending) to the Kalanag gear list"_ — it will edit the CSV and you can commit.
+**With your coding assistant:** Open the repo in Claude Code or Codex and say _"add a satellite phone (290g, electronics, critical, pending) to the Kalanag gear list"_ — it will edit the CSV and you can commit.
 
 ---
 
 ## Adding a new expedition
 
-Five steps, no component code changes required.
+Three steps, no component code changes required.
 
 ### 1. Add an entry to the registry
 
@@ -107,7 +107,7 @@ git push origin main
 
 The new expedition appears on the landing page at `/peak/` and its dashboard is live at `/peak/manaslu`.
 
-**With Claude:** In a new session, say _"add a new expedition for Manaslu 8163m Nepal, center coordinates [84.5590, 28.5497]"_ — it will read `CLAUDE.md`, update the registry, create the data directory skeleton, and prompt you for the actual GPX/waypoint data.
+**With your coding assistant:** In a new session, say _"add a new expedition for Manaslu 8163m Nepal, center coordinates [84.5590, 28.5497]"_ — it will read the shared `AGENTS.md` guide, update the registry, create the data directory skeleton, and prompt you for the actual GPX/waypoint data.
 
 ---
 
@@ -178,3 +178,28 @@ Sleeping Bag,shelter,1200,1,packed,critical
 Crampons,technical,1200,1,pending,critical
 Trekking Poles,technical,480,2,packed,optional
 ```
+
+## Responsive layout and validation
+
+Phones use a bottom sheet with Route/Gear tabs. Use the expand button for more
+space; choosing a waypoint lowers the sheet to reveal the map. At 768px and above,
+the dashboard uses a side panel with an optional two-column view. Gear filters
+survive expanding and collapsing the panel.
+
+Local development defaults to `/`. Set `NEXT_PUBLIC_BASE_PATH=/peak` when building
+for GitHub Pages; the deployment workflow does this automatically. Mapbox requires
+a valid public token and network access. All expedition information remains in the
+repository; the page does not save packing changes.
+
+Run `npm run type-check`, `npm test`, and `npm run build`. For desktop/mobile smoke
+tests, install Chromium with `npx playwright install chromium`, then run
+`npm run test:e2e`. The browser tests cover the interface without requiring live
+Mapbox access; verify live terrain and styles separately with a configured token.
+
+Waypoint distances must be present, nonnegative and unique. CSV quantities must be
+positive integers. Invalid files display a data error. GPX supports multiple tracks
+and segments without connecting disconnected pieces. Route times and slopes are
+estimates from waypoint endpoints; slope labels do not establish climbing difficulty.
+Packing percentage measures manifest rows, while weights include quantities.
+
+Contributor guidance for Claude and Codex lives in [AGENTS.md](AGENTS.md).

@@ -1,5 +1,5 @@
-import type { Map as MapboxMap } from 'mapbox-gl';
-import type { Feature, LineString, FeatureCollection, Point } from 'geojson';
+import type { Map as MapboxMap, GeoJSONSource } from 'mapbox-gl';
+import type { Feature, LineString, MultiLineString, FeatureCollection, Point } from 'geojson';
 import type { Waypoint } from '@/types/route';
 import { LAYER_IDS } from '@/lib/mapboxConfig';
 
@@ -93,8 +93,8 @@ export function addContours(map: MapboxMap): void {
     filter: ['!=', ['get', 'index'], 5],
     paint: {
       'line-color': '#00d4ff',
-      'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.4, 15, 0.8] as unknown as number,
-      'line-opacity': ['interpolate', ['linear'], ['zoom'], 10, 0.25, 15, 0.45] as unknown as number,
+      'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.4, 15, 0.8],
+      'line-opacity': ['interpolate', ['linear'], ['zoom'], 10, 0.25, 15, 0.45],
     },
     layout: { 'line-join': 'round', 'line-cap': 'round' },
   });
@@ -108,15 +108,16 @@ export function addContours(map: MapboxMap): void {
     filter: ['==', ['get', 'index'], 5],
     paint: {
       'line-color': '#00d4ff',
-      'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.8, 15, 2.0] as unknown as number,
-      'line-opacity': ['interpolate', ['linear'], ['zoom'], 10, 0.55, 15, 0.85] as unknown as number,
+      'line-width': ['interpolate', ['linear'], ['zoom'], 10, 0.8, 15, 2.0],
+      'line-opacity': ['interpolate', ['linear'], ['zoom'], 10, 0.55, 15, 0.85],
     },
     layout: { 'line-join': 'round', 'line-cap': 'round' },
   });
 }
 
-export function addGpxRoute(map: MapboxMap, geojson: Feature<LineString>): void {
-  if (map.getSource(LAYER_IDS.routeSourceId)) return;
+export function addGpxRoute(map: MapboxMap, geojson: Feature<LineString | MultiLineString>): void {
+  const source = map.getSource(LAYER_IDS.routeSourceId) as GeoJSONSource | undefined;
+  if (source) { source.setData(geojson); return; }
 
   map.addSource(LAYER_IDS.routeSourceId, {
     type: 'geojson',
@@ -153,7 +154,6 @@ export function addGpxRoute(map: MapboxMap, geojson: Feature<LineString>): void 
 }
 
 export function addWaypointMarkers(map: MapboxMap, waypoints: Waypoint[]): void {
-  if (map.getSource(LAYER_IDS.waypointSourceId)) return;
   const featureCollection: FeatureCollection<Point> = {
     type: 'FeatureCollection',
     features: waypoints.map((wp) => ({
@@ -168,6 +168,8 @@ export function addWaypointMarkers(map: MapboxMap, waypoints: Waypoint[]): void 
     })),
   };
 
+  const source = map.getSource(LAYER_IDS.waypointSourceId) as GeoJSONSource | undefined;
+  if (source) { source.setData(featureCollection); return; }
   map.addSource(LAYER_IDS.waypointSourceId, {
     type: 'geojson',
     data: featureCollection,
@@ -185,14 +187,14 @@ export function addWaypointMarkers(map: MapboxMap, waypoints: Waypoint[]): void 
         'highcamp', 5,
         'basecamp', 5,
         4,
-      ] as unknown as number,
+      ],
       'circle-color': [
         'match',
         ['get', 'camp_type'],
         'summit', '#ff6b2b',
         'highcamp', '#ff6b2b',
         '#00d4ff',
-      ] as unknown as string,
+      ],
       'circle-stroke-width': 1.5,
       'circle-stroke-color': '#000000',
       'circle-opacity': 0.95,

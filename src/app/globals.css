@@ -13,7 +13,7 @@
     background-color: #000000;
     color: #ffffff;
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
   /* 2px tactical scrollbar */
@@ -73,4 +73,29 @@
 }
 .mapboxgl-ctrl-logo {
   display: none !important;
+}
+
+.dashboard-panel {
+  position: absolute; z-index: 10; bottom: 0; left: 0; width: 100%;
+  display: flex; flex-direction: column; height: 48dvh;
+  background: rgba(0,0,0,.94); border: 1px solid #262626;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.dashboard-panel.panel-expanded { height: 85dvh; }
+.dashboard-panel.panel-collapsed { height: calc(56px + env(safe-area-inset-bottom)); }
+.panel-control { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+button:focus-visible, a:focus-visible { outline: 2px solid #00d4ff; outline-offset: -2px; }
+.mapboxgl-ctrl-bottom-right { top: 90px; bottom: auto; }
+.mapboxgl-ctrl-group button { width: 44px !important; height: 44px !important; }
+.mapboxgl-ctrl-bottom-left { top: 0; bottom: auto; }
+@media (min-width: 768px) {
+  .dashboard-panel { top: 0; bottom: auto; height: 100%; width: 400px; }
+  .dashboard-panel.panel-expanded { height: 100%; width: min(72%, 1100px); }
+  .dashboard-panel.panel-collapsed { height: 56px; width: 280px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+@media (min-width: 1024px) {
+  .panel-expanded .detail-feeds { overflow: hidden; }
+  .panel-expanded .detail-feeds > div { overflow-y: auto; }
 }

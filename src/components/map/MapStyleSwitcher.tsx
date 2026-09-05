@@ -25,7 +25,7 @@ export default function MapStyleSwitcher() {
           <button
             key={id}
             onClick={() => setMapStyle(id)}
-            className={`flex flex-col items-center gap-0.5 px-2.5 py-1.5 border transition-colors ${
+            className={`flex flex-col items-center gap-0.5 px-2.5 py-1.5 min-h-11 min-w-11 border transition-colors ${
               active
                 ? 'border-neon-cyan/60 bg-black/80 text-neon-cyan'
                 : 'border-neutral-800 bg-black/60 text-neutral-500 hover:border-neutral-700 hover:text-neutral-300'

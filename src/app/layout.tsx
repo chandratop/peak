@@ -1,13 +1,8 @@
 import type { Metadata } from 'next';
-import { JetBrains_Mono } from 'next/font/google';
+import '@fontsource/jetbrains-mono/latin-300.css';
+import '@fontsource/jetbrains-mono/latin-400.css';
+import '@fontsource/jetbrains-mono/latin-500.css';
 import './globals.css';
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains-mono',
-  weight: ['100', '200', '300', '400', '500'],
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: {
@@ -23,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} font-mono`}>
+    <html lang="en" className="font-mono">
       <body>{children}</body>
     </html>
   );

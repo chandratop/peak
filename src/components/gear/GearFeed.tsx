@@ -31,7 +31,7 @@ export default function GearFeed() {
   if (error) {
     return (
       <p className="text-2xs text-neutral-600 font-mono mb-4">
-        GEAR DATA UNAVAILABLE
+        GEAR DATA UNAVAILABLE: {error}
       </p>
     );
   }
@@ -58,9 +58,8 @@ export default function GearFeed() {
         </div>
       )}
 
-      {/* Item list — only shown in expanded mode */}
-      {panelState === 'expanded' && (
-        <div>
+      {/* Mobile always shows items; desktop shows them when expanded. */}
+        <div className={panelState === 'expanded' ? '' : 'md:hidden'}>
           {filtered.map((item, i) => (
             <GearItem key={`${item.item_name}-${i}`} item={item} />
           ))}
@@ -70,7 +69,6 @@ export default function GearFeed() {
             </p>
           )}
         </div>
-      )}
     </div>
   );
 }

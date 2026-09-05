@@ -1,19 +1,12 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { MAPBOX_TOKEN, LAYER_IDS } from '@/lib/mapboxConfig';
+import { MAPBOX_TOKEN } from '@/lib/mapboxConfig';
 import { useExpedition } from '@/lib/expeditionContext';
 import { getBaseStyle } from './mapStyles';
-import {
-  addTerrain,
-  addContours,
-  addGpxRoute,
-  addWaypointMarkers,
-  addSky,
-  addHillshade,
-} from './mapLayers';
+import { addTerrain, addContours, addGpxRoute, addWaypointMarkers, addSky, addHillshade } from './mapLayers';
 import { useGpxTrack } from '@/hooks/useGpxTrack';
 import { useRouteWaypoints } from '@/hooks/useRouteWaypoints';
 import { useMapContext } from '@/lib/mapContext';
@@ -22,129 +15,56 @@ export default function MapView() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { mapRef, mapStyle } = useMapContext();
   const expedition = useExpedition();
-  const { geojson: gpxGeoJson } = useGpxTrack();
-  const { data: routeData } = useRouteWaypoints();
+  const gpx = useGpxTrack();
+  const route = useRouteWaypoints();
+  const latest = useRef({ gpx: gpx.geojson, route: route.data, style: mapStyle });
+  latest.current = { gpx: gpx.geojson, route: route.data, style: mapStyle };
+  const [error, setError] = useState<string | null>(null);
 
-  // Track whether the map's initial 'load' has fired — more reliable than isStyleLoaded()
-  const mapLoadedRef = useRef(false);
-
-  // Refs so async handlers always see the latest data
-  const gpxRef = useRef(gpxGeoJson);
-  const routeRef = useRef(routeData);
-  useEffect(() => { gpxRef.current = gpxGeoJson; }, [gpxGeoJson]);
-  useEffect(() => { routeRef.current = routeData; }, [routeData]);
-
-  function applyCustomLayers(map: mapboxgl.Map, mode: typeof mapStyle) {
-    addTerrain(map);
-    if (mode === 'wireframe') {
-      addSky(map);
-      addHillshade(map);
-      addContours(map);
-    }
-    if (routeRef.current) addWaypointMarkers(map, routeRef.current.waypoints);
-    if (gpxRef.current) addGpxRoute(map, gpxRef.current);
-  }
-
-  // Init map once
   useEffect(() => {
-    if (!containerRef.current || mapRef.current) return;
-
-    mapboxgl.accessToken = MAPBOX_TOKEN;
-
-    const map = new mapboxgl.Map({
-      container: containerRef.current,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      style: getBaseStyle('wireframe') as any,
-      center: expedition.mapView.center,
-      zoom: expedition.mapView.zoom,
-      pitch: expedition.mapView.pitch,
-      bearing: expedition.mapView.bearing,
-      antialias: true,
-      attributionControl: true,
-    });
-
-    map.addControl(
-      new mapboxgl.NavigationControl({ visualizePitch: true }),
-      'bottom-right'
-    );
-
+    if (!containerRef.current || !MAPBOX_TOKEN) return;
+    let map: mapboxgl.Map;
+    try {
+      map = new mapboxgl.Map({ container: containerRef.current, accessToken: MAPBOX_TOKEN, style: getBaseStyle(latest.current.style), ...expedition.mapView, antialias: true });
+    } catch (err) { setError(err instanceof Error ? err.message : 'Map could not start'); return; }
     mapRef.current = map;
-
-    map.on('load', () => {
-      mapLoadedRef.current = true;
-      applyCustomLayers(map, 'wireframe');
-    });
-
-    return () => {
-      map.remove();
-      mapRef.current = null;
-      mapLoadedRef.current = false;
+    const apply = () => {
+      try {
+        addTerrain(map);
+        if (latest.current.style === 'wireframe') { addSky(map); addHillshade(map); addContours(map); }
+        if (latest.current.route) addWaypointMarkers(map, latest.current.route.waypoints);
+        if (latest.current.gpx) addGpxRoute(map, latest.current.gpx);
+      } catch (err) { setError(err instanceof Error ? err.message : 'Map layers could not load'); }
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    map.on('style.load', apply);
+    map.on('error', () => setError('Some map content could not load. Check your connection and Mapbox token.'));
+    map.addControl(new mapboxgl.NavigationControl({ visualizePitch: true }), 'bottom-right');
+    return () => { map.remove(); mapRef.current = null; };
+  }, [expedition, mapRef]);
 
-  // React to style mode changes — skip the very first render (map init handles that)
-  const isFirstRender = useRef(true);
   useEffect(() => {
-    if (isFirstRender.current) { isFirstRender.current = false; return; }
     const map = mapRef.current;
     if (!map) return;
+    setError(null);
+    // Full style replacement avoids partial sprite/glyph updates between style families.
+    try { map.setStyle(getBaseStyle(mapStyle), { diff: false, localFontFamily: undefined, localIdeographFontFamily: undefined }); }
+    catch { setError('Map style could not load'); }
+  }, [mapStyle, mapRef]);
 
-    mapLoadedRef.current = false;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    map.setStyle(getBaseStyle(mapStyle) as any);
-
-    const onStyleLoad = () => {
-      mapLoadedRef.current = true;
-      applyCustomLayers(map, mapStyle);
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const update = () => {
+      try {
+        if (route.data) addWaypointMarkers(map, route.data.waypoints);
+        if (gpx.geojson) addGpxRoute(map, gpx.geojson);
+      } catch { setError('Route overlay could not load'); }
     };
-    map.once('style.load', onStyleLoad);
+    if (map.isStyleLoaded()) update();
+    else map.once('idle', update);
+    return () => { map.off('idle', update); };
+  }, [gpx.geojson, route.data, mapRef]);
 
-    return () => { map.off('style.load', onStyleLoad); };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mapStyle]);
-
-  // Add waypoint markers once route data arrives after initial map load
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map || !routeData) return;
-    if (mapLoadedRef.current) {
-      if (!map.getSource(LAYER_IDS.waypointSourceId)) {
-        addWaypointMarkers(map, routeData.waypoints);
-      }
-    } else {
-      map.once('load', () => {
-        if (!map.getSource(LAYER_IDS.waypointSourceId)) {
-          addWaypointMarkers(map, routeData.waypoints);
-        }
-      });
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [routeData]);
-
-  // Add GPX route once GPX data arrives after initial map load
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map || !gpxGeoJson) return;
-    if (mapLoadedRef.current) {
-      if (!map.getSource(LAYER_IDS.routeSourceId)) {
-        addGpxRoute(map, gpxGeoJson);
-      }
-    } else {
-      map.once('load', () => {
-        if (!map.getSource(LAYER_IDS.routeSourceId)) {
-          addGpxRoute(map, gpxGeoJson);
-        }
-      });
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gpxGeoJson]);
-
-  return (
-    <div
-      ref={containerRef}
-      className="w-full h-full"
-      aria-label={`3D topographic map of ${expedition.peakName}`}
-    />
-  );
+  const message = !MAPBOX_TOKEN ? 'Set NEXT_PUBLIC_MAPBOX_TOKEN to display the map.' : error ?? gpx.error ?? route.error;
+  return <><div ref={containerRef} className="w-full h-full" aria-label={`3D topographic map of ${expedition.peakName}`} />{message && <p role="status" className="absolute top-20 right-3 max-w-64 bg-black/90 border border-neutral-700 p-3 text-xs text-orange-300">{message}</p>}</>;
 }
