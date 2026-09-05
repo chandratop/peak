@@ -20,11 +20,14 @@ export function parseWaypoints(value: unknown): RouteWaypointsFile {
   if (!data || !data.metadata || !Array.isArray(data.waypoints) || !data.waypoints.length) throw new Error('Route must contain metadata and waypoints');
   const m = data.metadata;
   if (![m.route_name, m.peak_name, m.region].every(v => typeof v === 'string' && v.trim()) || ![m.summit_elevation_m, m.total_distance_km, m.total_gain_m].every(finite) || m.total_distance_km < 0 || m.total_gain_m < 0) throw new Error('Invalid route metadata');
+<<<<<<< HEAD
   if (m.coverage !== undefined && m.coverage !== 'approach-only') throw new Error('Invalid route coverage');
   if (m.route_note !== undefined && typeof m.route_note !== 'string') throw new Error('Invalid route note');
   if (m.planning_outline !== undefined) {
     if (m.coverage !== 'approach-only' || !m.route_note || !Array.isArray(m.planning_outline) || m.planning_outline.length < 2 || m.planning_outline.some(p => !p || typeof p.name !== 'string' || !p.name.trim() || !finite(p.lng) || Math.abs(p.lng) > 180 || !finite(p.lat) || Math.abs(p.lat) > 90)) throw new Error('Invalid planning outline');
   }
+=======
+>>>>>>> 98e19b6 (enhancements)
   const ids = new Set<string>();
   const distances = new Set<number>();
   for (const w of data.waypoints) {

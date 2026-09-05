@@ -69,9 +69,12 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+<<<<<<< HEAD
 
 ## Kalanag route provenance
 `public/data/kalanag/ROUTE-SOURCES.md` documents the supplied approach and separate
 schematic continuation. `route.gpx` ends at Ruinsara. `metadata.planning_outline`
 is drawn dashed and is excluded from GPX, elevation profiles and distance totals.
 Do not convert this planning diagram into a navigation course or invent high camps.
+=======
+>>>>>>> 98e19b6 (enhancements)

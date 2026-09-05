@@ -8,7 +8,11 @@ import { totalWeight } from '../src/lib/weightUtils';
 const gear = readFileSync('public/data/kalanag/gear-manifest.csv', 'utf8');
 const route = JSON.parse(readFileSync('public/data/kalanag/route-waypoints.json', 'utf8'));
 test('shipped data validates and weights include quantities', () => {
+<<<<<<< HEAD
   assert.equal(parseWaypoints(route).waypoints.length, 3);
+=======
+  assert.equal(parseWaypoints(route).waypoints.length, 7);
+>>>>>>> 98e19b6 (enhancements)
   assert.equal(parseGear(gear).length, 30);
   assert.equal(totalWeight([{ weight_g: 100, qty: 3 }]), 300);
 });
@@ -22,8 +26,12 @@ test('duplicate distances and invalid coordinates are rejected', () => {
   assert.throws(() => parseWaypoints(invalid));
 });
 test('segment estimates account for ascent and reject non-increasing distances', () => {
+<<<<<<< HEAD
   const a = { ...route.waypoints[0], elevation_m: 1920, distance_from_start_km: 0 };
   const b = { ...route.waypoints[1], elevation_m: 2400, distance_from_start_km: 12 };
+=======
+  const [a, b] = route.waypoints;
+>>>>>>> 98e19b6 (enhancements)
   assert.equal(computeSegmentMetrics(a, b).naismith_hours, 3.2);
   assert.throws(() => computeSegmentMetrics(a, a));
   const descent = computeSegmentMetrics(a, { ...b, elevation_m: 1320 });
@@ -36,11 +44,16 @@ test('GPX preserves disconnected tracks and rejects empty input', async () => {
   Object.assign(globalThis, { DOMParser });
   const { parseGpxTrack } = await import('../src/lib/parseGpx');
   const xml = readFileSync('public/data/kalanag/route.gpx', 'utf8');
+<<<<<<< HEAD
   assert.equal(parseGpxTrack(xml).geometry.type, 'MultiLineString');
+=======
+  assert.equal(parseGpxTrack(xml).geometry.type, 'LineString');
+>>>>>>> 98e19b6 (enhancements)
   const segment = '<trkseg><trkpt lat="30" lon="78"/><trkpt lat="31" lon="79"/></trkseg>';
   assert.equal(parseGpxTrack(`<gpx><trk>${segment}${segment}</trk></gpx>`).geometry.type, 'MultiLineString');
   assert.throws(() => parseGpxTrack('<gpx/>'));
 });
+<<<<<<< HEAD
 
 test('planning outline is separate from imported approach and cannot silently become route data', async () => {
   const { DOMParser } = await import('@xmldom/xmldom');
@@ -74,3 +87,5 @@ test('planning geometry is rendered dashed and updates without duplicating layer
   assert.equal(layers.length, 2);
   assert.deepEqual(sources.get('peak-planning-outline')?.data, { type: 'FeatureCollection', features: [] });
 });
+=======
+>>>>>>> 98e19b6 (enhancements)

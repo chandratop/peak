@@ -2,7 +2,11 @@ import { test, expect } from '@playwright/test';
 test('dashboard data, panels and filters work without horizontal overflow', async ({ page }, info) => {
   await page.goto('/');
   await page.getByRole('link', { name: /KALANAG/ }).click();
+<<<<<<< HEAD
   await expect(page.getByText('25.6 km', { exact: true })).toBeVisible();
+=======
+  await expect(page.getByText('42 km', { exact: true })).toBeVisible();
+>>>>>>> 98e19b6 (enhancements)
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   if (info.project.name === 'mobile') await page.getByRole('tab', { name: 'gear', exact: true }).click();
   await page.getByRole('button', { name: 'Expand details' }).click();
@@ -38,6 +42,7 @@ test('viewport changes keep details usable', async ({ page }) => {
     await expect(page.getByRole('button', { name: 'Hide details' })).toBeInViewport();
   }
 });
+<<<<<<< HEAD
 
 test('planning route distinguishes the supplied approach from the unknown climb', async ({ page }) => {
   await page.goto('/kalanag/');
@@ -45,3 +50,5 @@ test('planning route distinguishes the supplied approach from the unknown climb'
   await expect(page.getByRole('button', { name: /Kyarkoti area/ })).toBeVisible();
   await expect(page.getByText('25.6 km', { exact: true })).toBeVisible();
 });
+=======
+>>>>>>> 98e19b6 (enhancements)
