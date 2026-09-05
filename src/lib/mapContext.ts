@@ -9,6 +9,7 @@ interface MapContextValue {
   mapStyle: MapStyleMode;
   setMapStyle: (mode: MapStyleMode) => void;
   panelState: PanelState;
+  focusWaypoint: (lng: number, lat: number) => void;
 }
 
 export const MapContext = createContext<MapContextValue | null>(null);

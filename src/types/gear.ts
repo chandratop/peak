@@ -18,11 +18,3 @@ export interface GearItem {
   status: GearStatus;
   priority: GearPriority;
 }
-
-export interface GearStats {
-  totalWeightG: number;
-  packedWeightG: number;
-  totalItems: number;
-  packedItems: number;
-  criticalUnpacked: GearItem[];
-}

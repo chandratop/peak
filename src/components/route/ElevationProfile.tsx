@@ -21,7 +21,7 @@ export default function ElevationProfile({ waypoints }: ElevationProfileProps) {
   const maxElev = Math.max(...sorted.map((w) => w.elevation_m));
   const elevRange = maxElev - minElev || 1;
 
-  const maxDist = sorted[sorted.length - 1].distance_from_start_km ?? sorted.length - 1;
+  const maxDist = Math.max(1, sorted[sorted.length - 1].distance_from_start_km ?? 0);
 
   const toX = (dist: number) =>
     PADDING + ((dist / maxDist) * (WIDTH - PADDING * 2));

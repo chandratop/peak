@@ -20,24 +20,15 @@ const CAMP_LABELS: Record<string, string> = {
 };
 
 const EFFORT_STYLES: Record<EffortLabel, string> = {
-  TRAIL:     'border-neutral-700 text-neutral-500',
-  STEEP:     'border-neon-cyan/40 text-neon-cyan/70',
-  SCRAMBLE:  'border-neon-orange/40 text-neon-orange/80',
-  TECHNICAL: 'border-neon-orange text-neon-orange',
+  GENTLE:     'border-neutral-700 text-neutral-500',
+  MODERATE:  'border-neon-cyan/40 text-neon-cyan/70',
+  STEEP:  'border-neon-orange/40 text-neon-orange/80',
+  'VERY STEEP': 'border-neon-orange text-neon-orange',
 };
 
 export default function WaypointCard({ waypoint, prevWaypoint }: WaypointCardProps) {
-  const { mapRef } = useMapContext();
-
-  const handleClick = () => {
-    mapRef.current?.flyTo({
-      center: [waypoint.lng, waypoint.lat],
-      zoom: 14,
-      pitch: 60,
-      bearing: -20,
-      duration: 1800,
-    });
-  };
+  const { focusWaypoint } = useMapContext();
+  const handleClick = () => focusWaypoint(waypoint.lng, waypoint.lat);
 
   const isSummit = waypoint.camp_type === 'summit';
   const isHighCamp = waypoint.camp_type === 'highcamp';
@@ -49,7 +40,7 @@ export default function WaypointCard({ waypoint, prevWaypoint }: WaypointCardPro
   return (
     <button
       onClick={handleClick}
-      className="w-full text-left py-2 px-2 border-b border-neutral-900 hover:bg-neutral-950 transition-colors group"
+      className="min-h-11 md:min-h-0 w-full text-left py-2 px-2 border-b border-neutral-900 hover:bg-neutral-950 transition-colors group"
       aria-label={`Fly to ${waypoint.name}`}
     >
       {/* Waypoint header row */}

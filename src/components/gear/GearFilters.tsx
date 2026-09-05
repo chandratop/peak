@@ -33,7 +33,8 @@ function Pill({
   return (
     <button
       onClick={onClick}
-      className={`text-2xs font-mono tracking-widest uppercase px-2 py-0.5 border transition-colors ${
+      aria-pressed={active}
+      className={`text-2xs font-mono tracking-widest uppercase px-2 py-2 min-h-11 border transition-colors ${
         active ? activeClass : 'border-neutral-800 text-neutral-600 hover:border-neutral-700 hover:text-neutral-500'
       }`}
     >

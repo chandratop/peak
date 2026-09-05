@@ -28,6 +28,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Type check and unit tests
+        run: npm run type-check && npm test
+
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Dashboard smoke tests
+        run: npm run test:e2e
+
       - name: Build
         run: npm run build
         env:

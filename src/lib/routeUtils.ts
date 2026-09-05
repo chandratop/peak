@@ -1,6 +1,6 @@
 import type { Waypoint } from '@/types/route';
 
-export type EffortLabel = 'TRAIL' | 'STEEP' | 'SCRAMBLE' | 'TECHNICAL';
+export type EffortLabel = 'GENTLE' | 'MODERATE' | 'STEEP' | 'VERY STEEP';
 
 export interface SegmentMetrics {
   distance_km: number;
@@ -12,15 +12,17 @@ export interface SegmentMetrics {
 }
 
 export function gradeToEffortLabel(grade: number): EffortLabel {
-  if (grade < 15)  return 'TRAIL';
-  if (grade < 35)  return 'STEEP';
-  if (grade < 60)  return 'SCRAMBLE';
-  return 'TECHNICAL';
+  if (grade < 15)  return 'GENTLE';
+  if (grade < 35)  return 'MODERATE';
+  if (grade < 60)  return 'STEEP';
+  return 'VERY STEEP';
 }
 
 export function computeSegmentMetrics(from: Waypoint, to: Waypoint): SegmentMetrics {
   const distance_km =
     (to.distance_from_start_km ?? 0) - (from.distance_from_start_km ?? 0);
+  if (!Number.isFinite(distance_km) || distance_km <= 0 || from.distance_from_start_km == null || to.distance_from_start_km == null) throw new Error('Segment distances must be present and increasing');
+  if (![from.elevation_m, to.elevation_m].every(Number.isFinite)) throw new Error('Segment elevations must be finite');
   const elevation_gain_m = to.elevation_m - from.elevation_m;
 
   const distance_m = distance_km * 1000;

@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const expedition = getExpedition(slug);
   if (!expedition) notFound();
   return {
-    title: expedition.pageTitle,
+    title: { absolute: expedition.pageTitle },
     description: expedition.pageDescription,
   };
 }

@@ -9,12 +9,12 @@ import { MapPin, Triangle } from 'lucide-react';
 
 export default function WaypointFeed() {
   const { data, loading, error } = useRouteWaypoints();
-  const { panelState, mapRef } = useMapContext();
+  const { panelState, focusWaypoint } = useMapContext();
 
   if (loading) return <LoadingSkeleton rows={5} />;
   if (error || !data) {
     return (
-      <p className="text-2xs text-neutral-600 font-mono">ROUTE DATA UNAVAILABLE</p>
+      <p className="text-2xs text-neutral-600 font-mono">ROUTE DATA UNAVAILABLE: {error ?? 'No waypoints found'}</p>
     );
   }
 
@@ -43,6 +43,7 @@ export default function WaypointFeed() {
       <div>
         {summaryStats}
         <ElevationProfile waypoints={sorted} />
+        <p className="text-2xs text-neutral-400 mb-3">Slopes and elevation changes use waypoint endpoints. Times are estimates; slope labels do not rate climbing difficulty.</p>
         <div>
           {sorted.map((wp) => {
             const isSummit = wp.camp_type === 'summit';
@@ -50,14 +51,8 @@ export default function WaypointFeed() {
             return (
               <button
                 key={wp.id}
-                onClick={() => mapRef.current?.flyTo({
-                  center: [wp.lng, wp.lat],
-                  zoom: 14,
-                  pitch: 60,
-                  bearing: -20,
-                  duration: 1800,
-                })}
-                className="w-full text-left flex items-center justify-between py-1.5 px-2 border-b border-neutral-900 hover:bg-neutral-950 transition-colors group"
+                onClick={() => focusWaypoint(wp.lng, wp.lat)}
+                className="min-h-11 md:min-h-0 w-full text-left flex items-center justify-between py-1.5 px-2 border-b border-neutral-900 hover:bg-neutral-950 transition-colors group"
               >
                 <div className="flex items-center gap-2 min-w-0">
                   {isSummit ? (
@@ -85,6 +80,7 @@ export default function WaypointFeed() {
     <div>
       {summaryStats}
       <ElevationProfile waypoints={sorted} />
+        <p className="text-2xs text-neutral-400 mb-3">Slopes and elevation changes use waypoint endpoints. Times are estimates; slope labels do not rate climbing difficulty.</p>
       <div>
         {sorted.map((wp, i) => (
           <WaypointCard key={wp.id} waypoint={wp} prevWaypoint={sorted[i - 1] ?? null} />
