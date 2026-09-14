@@ -40,6 +40,7 @@ Rucksack,misc,1755,1,pending,critical,no
 Documents & Cash,misc,45,1,pending,critical,yes
 Bottle,misc,135,1,pending,critical,yes
 Hydration Bag,misc,120,1,pending,optional,yes
+Packing Cubes,misc,0,1,pending,optional,yes
 Cup,misc,100,1,pending,optional,yes
 Tiffin & Spoon,misc,75,1,pending,optional,yes
 Hand Towel,misc,43,2,pending,optional,yes
