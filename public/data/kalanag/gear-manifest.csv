@@ -1,47 +1,48 @@
-item_name,category,weight_g,qty,status,priority
-Half Sleeved Base Layer,clothing,160,3,pending,critical
-Full Sleeved Base Layer,clothing,160,3,pending,critical
-Underwear,clothing,75,3,pending,critical
-Woollen Socks,clothing,60,3,pending,critical
-Cotton Socks,clothing,60,3,pending,critical
-Summit Trousers,clothing,580,1,pending,critical
-Cargo Trousers,clothing,580,1,pending,critical
-Light Trousers,clothing,245,1,pending,optional
-Fleece,clothing,320,1,pending,critical
-Camp Jacket,clothing,510,1,pending,critical
-Boots,clothing,1482,1,pending,critical
-Cap,clothing,78,1,pending,optional
-Balaclava,clothing,30,1,pending,optional
-Glasses/Sunglasses,clothing,28,1,pending,optional
-Ski Gloves,clothing,190,1,pending,critical
-Woollen Gloves,clothing,190,1,pending,critical
-Thermals pair,clothing,205,1,pending,critical
-Sleeping Bag,shelter,500,1,pending,critical
-Carabiner,technical,5,1,pending,optional
-Trekking Pole,technical,200,1,pending,optional
-Toilet Paper,medical,55,2,pending,critical
-Sunscreen,medical,70,1,pending,critical
-Lip Balm,medical,15,1,pending,critical
-Toothbrush & Toothpaste,medical,55,1,pending,critical
-Medicines,medical,120,1,pending,critical
-Water,food,1000,2,pending,critical
-Glucovita,food,200,2,pending,optional
-Energy Gel,food,35,15,pending,optional
-Phone,electronics,232,1,pending,critical
-Lens,electronics,65,1,pending,optional
-Powerbank,electronics,420,1,pending,critical
-Head Torch,electronics,55,1,pending,critical
-Charger,electronics,75,1,pending,optional
-Handkerchief,misc,20,3,pending,optional
-Rucksack,misc,1755,1,pending,critical
-Documents & Cash,misc,45,1,pending,critical
-Bottle,misc,135,1,pending,critical
-Hydration Bag,misc,120,1,pending,optional
-Cup,misc,100,1,pending,optional
-Tiffin & Spoon,misc,75,1,pending,optional
-Hand Towel,misc,80,2,pending,optional
-Deodorant,misc,90,1,pending,optional
-Bin Bags,misc,5,5,pending,optional
-Extra Rain Cover,misc,120,1,pending,optional
-Uno Flip,misc,155,1,pending,optional
-Perfume,misc,130,1,pending,optional
+item_name,category,weight_g,qty,status,priority,not_in_rucksack
+Half Sleeved Base Layer,clothing,160,3,pending,critical,just one
+Full Sleeved Base Layer,clothing,160,3,pending,critical,just one
+Underwear,clothing,75,3,pending,critical,just one
+Woollen Socks,clothing,60,3,pending,critical,just one
+Cotton Socks,clothing,60,3,pending,critical,just one
+Summit Trousers,clothing,580,1,pending,critical,no
+Cargo Trousers,clothing,580,1,pending,critical,yes
+Light Trousers,clothing,245,1,pending,optional,no
+Fleece,clothing,320,1,pending,critical,no
+Camp Jacket,clothing,510,1,pending,critical,no
+Boots,clothing,1482,1,pending,critical,yes
+Cap,clothing,78,1,pending,optional,yes
+Balaclava,clothing,30,1,pending,optional,no
+Glasses/Sunglasses,clothing,28,1,pending,optional,yes
+Ski Gloves,clothing,190,1,pending,critical,yes
+Woollen Gloves,clothing,190,1,pending,critical,no
+Thermals pair,clothing,205,1,pending,critical,no
+Sleeping Bag,shelter,500,1,pending,critical,no
+Carabiner,technical,5,1,pending,optional,no
+Trekking Pole,technical,200,1,pending,optional,yes
+Toilet Paper,medical,55,2,pending,critical,no
+Sunscreen,medical,70,1,pending,critical,no
+Lip Balm,medical,15,1,pending,critical,no
+Toothbrush & Toothpaste,medical,55,1,pending,critical,no
+Medicines,medical,120,1,pending,critical,no
+Water,food,1000,2,pending,critical,just one
+Glucovita,food,167,2,pending,optional,no
+Energy Gel,food,35,15,pending,optional,no
+Phone,electronics,233,1,pending,critical,yes
+Lens,electronics,65,1,pending,optional,yes
+Powerbank (27000mAh),electronics,549,1,pending,critical,no
+Head Torch,electronics,55,1,pending,critical,no
+Charger,electronics,75,1,pending,optional,no
+Garmin Instinct 2X Solar,electronics,67,1,pending,critical,yes
+Handkerchief,misc,20,3,pending,optional,just one
+Rucksack,misc,1755,1,pending,critical,yes
+Documents & Cash,misc,45,1,pending,critical,no
+Bottle,misc,135,1,pending,critical,no
+Hydration Bag,misc,120,1,pending,optional,no
+Cup,misc,100,1,pending,optional,no
+Tiffin & Spoon,misc,75,1,pending,optional,no
+Hand Towel,misc,80,2,pending,optional,just one
+Deodorant,misc,70,1,pending,optional,no
+Bin Bags,misc,5,5,pending,optional,no
+Extra Rain Cover,misc,120,1,pending,optional,yes
+Uno Flip,misc,155,1,pending,optional,no
+Perfume,misc,130,1,pending,optional,no
