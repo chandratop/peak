@@ -13,7 +13,7 @@ test('shipped data validates and weights include quantities', () => {
   assert.equal(totalWeight([{ weight_g: 100, qty: 3 }]), 300);
 });
 test('invalid CSV enums, quantities, weights and headers are rejected', () => {
-  for (const bad of [gear.replace('580,1', '580,0'), gear.replace('1482,1', '-1,1'), gear.replace('pending,critical', 'confirmed,critical'), gear.replace('weight_g', 'weight'), gear.replace(',just one\n', ',sometimes\n')]) assert.throws(() => parseGear(bad));
+  for (const bad of [gear.replace('580,1', '580,0'), gear.replace('1482,1', '-1,1'), gear.replace('pending,critical', 'confirmed,critical'), gear.replace('weight_g', 'weight'), gear.replace(',all but one\n', ',sometimes\n')]) assert.throws(() => parseGear(bad));
 });
 test('duplicate distances and invalid coordinates are rejected', () => {
   const invalid = structuredClone(route); invalid.waypoints[1].distance_from_start_km = 0;

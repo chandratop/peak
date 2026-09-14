@@ -7,9 +7,9 @@ interface GearItemProps {
 }
 
 const PLACEMENT_LABEL: Record<RucksackPlacement, string> = {
-  yes: 'EXTERNAL',
-  no: 'IN PACK',
-  'just one': '1 EXTERNAL, REST PACKED',
+  yes: 'IN PACK',
+  no: 'EXTERNAL',
+  'all but one': 'ALL BUT ONE PACKED',
 };
 
 export default function GearItem({ item }: GearItemProps) {
@@ -24,7 +24,7 @@ export default function GearItem({ item }: GearItemProps) {
       <div className="flex-1 min-w-0 mr-2">
         <p className="text-xs text-white font-mono truncate">{item.item_name}</p>
         <p className="text-2xs text-neutral-600 font-mono uppercase tracking-widest truncate">
-          {item.category} · {PLACEMENT_LABEL[item.not_in_rucksack]}
+          {item.category} · {PLACEMENT_LABEL[item.in_rucksack]}
         </p>
       </div>
       <div className="flex items-center gap-2 flex-shrink-0">
