@@ -1,10 +1,6 @@
 import type { Map as MapboxMap, GeoJSONSource } from 'mapbox-gl';
 import type { Feature, LineString, MultiLineString, FeatureCollection, Point } from 'geojson';
-<<<<<<< HEAD
 import type { Waypoint, PlanningPoint } from '@/types/route';
-=======
-import type { Waypoint } from '@/types/route';
->>>>>>> 98e19b6 (enhancements)
 import { LAYER_IDS } from '@/lib/mapboxConfig';
 
 export function addTerrain(map: MapboxMap): void {
