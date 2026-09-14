@@ -1,9 +1,9 @@
 item_name,category,weight_g,qty,status,priority,in_rucksack
 Half Sleeved Base Layer,clothing,160,3,pending,critical,all but one
-Full Sleeved Base Layer,clothing,160,3,pending,critical,all but one
+Full Sleeved Base Layer,clothing,160,3,pending,critical,no
 Underwear,clothing,75,3,pending,critical,all but one
 Woollen Socks,clothing,60,3,pending,critical,all but one
-Cotton Socks,clothing,60,3,pending,critical,all but one
+Cotton Socks,clothing,60,3,pending,critical,no
 Summit Trousers,clothing,580,1,pending,critical,yes
 Cargo Trousers,clothing,580,1,pending,critical,no
 Light Trousers,clothing,245,1,pending,optional,yes
