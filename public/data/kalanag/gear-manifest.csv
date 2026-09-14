@@ -1,20 +1,21 @@
 item_name,category,weight_g,qty,status,priority
-Base Layer,clothing,160,3,pending,critical
+Half Sleeved Base Layer,clothing,160,3,pending,critical
+Full Sleeved Base Layer,clothing,160,3,pending,critical
 Underwear,clothing,75,3,pending,critical
-Socks,clothing,60,3,pending,critical
-Trousers,clothing,580,1,pending,critical
-Trousers,clothing,245,1,pending,optional
+Woollen Socks,clothing,60,3,pending,critical
+Cotton Socks,clothing,60,3,pending,critical
+Summit Trousers,clothing,580,1,pending,critical
+Cargo Trousers,clothing,580,1,pending,critical
+Light Trousers,clothing,245,1,pending,optional
 Fleece,clothing,320,1,pending,critical
-Outer Shell,clothing,510,1,pending,critical
+Camp Jacket,clothing,510,1,pending,critical
 Boots,clothing,1482,1,pending,critical
-Cap,clothing,70,1,pending,optional
-Neck Gaiter,clothing,30,1,pending,optional
+Cap,clothing,78,1,pending,optional
+Balaclava,clothing,30,1,pending,optional
 Glasses/Sunglasses,clothing,28,1,pending,optional
-Gloves,clothing,190,1,pending,critical
-Thermals,clothing,205,1,pending,critical
-Overpant,clothing,280,1,pending,optional
-Slippers,clothing,370,1,pending,optional
-Shirts & Shorts,clothing,600,2,pending,optional
+Ski Gloves,clothing,190,1,pending,critical
+Woollen Gloves,clothing,190,1,pending,critical
+Thermals pair,clothing,205,1,pending,critical
 Sleeping Bag,shelter,500,1,pending,critical
 Carabiner,technical,5,1,pending,optional
 Trekking Pole,technical,200,1,pending,optional
@@ -25,10 +26,9 @@ Toothbrush & Toothpaste,medical,55,1,pending,critical
 Medicines,medical,120,1,pending,critical
 Water,food,1000,2,pending,critical
 Glucovita,food,200,2,pending,optional
-Peanut Chikki Bars,food,15,44,pending,optional
+Energy Gel,food,15,44,pending,optional
 Phone,electronics,232,1,pending,critical
 Lens,electronics,65,1,pending,optional
-Earphones,electronics,28,1,pending,optional
 Powerbank,electronics,420,1,pending,critical
 Head Torch,electronics,55,1,pending,critical
 Charger,electronics,75,1,pending,optional
@@ -38,16 +38,10 @@ Documents & Cash,misc,45,1,pending,critical
 Bottle,misc,135,1,pending,critical
 Hydration Bag,misc,120,1,pending,optional
 Cup,misc,100,1,pending,optional
-Bidet,misc,220,1,pending,optional
-Tiffin/Plate & Spoon,misc,75,1,pending,optional
-Kitchen Gloves,misc,60,1,pending,optional
-Towel,misc,80,2,pending,optional
-Laundry Clips,misc,10,2,pending,optional
+Tiffin & Spoon,misc,75,1,pending,optional
+Hand Towel,misc,80,2,pending,optional
 Deodorant,misc,90,1,pending,optional
 Bin Bags,misc,5,5,pending,optional
-Rain Cover,misc,120,1,pending,optional
-Cabin Suitcase,misc,2850,1,pending,optional
-Canvas Bag,misc,950,1,pending,optional
+Extra Rain Cover,misc,120,1,pending,optional
 Uno Flip,misc,155,1,pending,optional
 Perfume,misc,130,1,pending,optional
-Satchel,misc,250,1,pending,optional
