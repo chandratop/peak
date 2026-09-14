@@ -26,7 +26,7 @@ Toothbrush & Toothpaste,medical,55,1,pending,critical
 Medicines,medical,120,1,pending,critical
 Water,food,1000,2,pending,critical
 Glucovita,food,200,2,pending,optional
-Energy Gel,food,15,44,pending,optional
+Energy Gel,food,35,15,pending,optional
 Phone,electronics,232,1,pending,critical
 Lens,electronics,65,1,pending,optional
 Powerbank,electronics,420,1,pending,critical
