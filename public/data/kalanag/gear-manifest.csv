@@ -11,19 +11,21 @@ Fleece,clothing,320,1,pending,critical,no
 Camp Jacket,clothing,510,1,pending,critical,no
 Boots,clothing,1482,1,pending,critical,yes
 Cap,clothing,78,1,pending,optional,yes
-Balaclava,clothing,30,1,pending,optional,no
-Glasses/Sunglasses,clothing,28,1,pending,optional,yes
+Balaclava,clothing,78,1,pending,optional,no
+Glasses/Sunglasses,clothing,31,1,pending,optional,yes
 Ski Gloves,clothing,190,1,pending,critical,yes
-Woollen Gloves,clothing,190,1,pending,critical,no
+Woollen Gloves,clothing,57,1,pending,critical,no
 Thermals pair,clothing,205,1,pending,critical,no
+Arm Sleeves,clothing,31,2,pending,optional,no
 Sleeping Bag,shelter,500,1,pending,critical,no
 Carabiner,technical,5,1,pending,optional,no
 Trekking Pole,technical,200,1,pending,optional,yes
 Toilet Paper,medical,55,2,pending,critical,no
-Sunscreen,medical,70,1,pending,critical,no
+Sunscreen,medical,31,1,pending,critical,no
 Lip Balm,medical,15,1,pending,critical,no
-Toothbrush & Toothpaste,medical,55,1,pending,critical,no
-Medicines,medical,120,1,pending,critical,no
+Toothbrush & Toothpaste,medical,56,1,pending,critical,no
+Sanitizer,medical,41,1,pending,critical,no
+Volini,medical,35,1,pending,critical,no
 Water,food,1000,2,pending,critical,just one
 Glucovita,food,167,2,pending,optional,no
 Energy Gel,food,35,15,pending,optional,no
@@ -33,14 +35,14 @@ Powerbank (27000mAh),electronics,549,1,pending,critical,no
 Head Torch,electronics,55,1,pending,critical,no
 Charger,electronics,75,1,pending,optional,no
 Garmin Instinct 2X Solar,electronics,67,1,pending,critical,yes
-Handkerchief,misc,20,3,pending,optional,just one
+Handkerchief,misc,20,7,pending,optional,just one
 Rucksack,misc,1755,1,pending,critical,yes
 Documents & Cash,misc,45,1,pending,critical,no
 Bottle,misc,135,1,pending,critical,no
 Hydration Bag,misc,120,1,pending,optional,no
 Cup,misc,100,1,pending,optional,no
 Tiffin & Spoon,misc,75,1,pending,optional,no
-Hand Towel,misc,80,2,pending,optional,just one
+Hand Towel,misc,43,2,pending,optional,no
 Deodorant,misc,70,1,pending,optional,no
 Bin Bags,misc,5,5,pending,optional,no
 Extra Rain Cover,misc,120,1,pending,optional,yes

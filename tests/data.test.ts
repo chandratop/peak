@@ -9,7 +9,7 @@ const gear = readFileSync('public/data/kalanag/gear-manifest.csv', 'utf8');
 const route = JSON.parse(readFileSync('public/data/kalanag/route-waypoints.json', 'utf8'));
 test('shipped data validates and weights include quantities', () => {
   assert.equal(parseWaypoints(route).waypoints.length, 3);
-  assert.equal(parseGear(gear).length, 47);
+  assert.equal(parseGear(gear).length, 49);
   assert.equal(totalWeight([{ weight_g: 100, qty: 3 }]), 300);
 });
 test('invalid CSV enums, quantities, weights and headers are rejected', () => {
