@@ -6,16 +6,16 @@ test('dashboard data, panels and filters work without horizontal overflow', asyn
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   if (info.project.name === 'mobile') await page.getByRole('tab', { name: 'gear', exact: true }).click();
   await page.getByRole('button', { name: 'Expand details' }).click();
-  await expect(page.getByText('Down Jacket', { exact: true })).toBeVisible();
+  await expect(page.getByText('Garmin Instinct 2X Solar', { exact: true })).toBeVisible();
   await page.screenshot({ path: `test-results/${info.project.name}-expanded.png` });
-  await page.getByRole('button', { name: 'pending', exact: true }).click();
-  await expect(page.getByText('Down Jacket', { exact: true })).toHaveCount(0);
+  await page.getByRole('button', { name: 'clothing', exact: true }).click();
+  await expect(page.getByText('Garmin Instinct 2X Solar', { exact: true })).toHaveCount(0);
   await page.getByRole('button', { name: 'Reduce details' }).click();
   await page.getByRole('button', { name: 'Expand details' }).click();
-  await expect(page.getByText('Down Jacket', { exact: true })).toHaveCount(0);
+  await expect(page.getByText('Garmin Instinct 2X Solar', { exact: true })).toHaveCount(0);
   await page.getByRole('button', { name: 'Hide details' }).click();
   await expect(page.getByRole('button', { name: 'Show details' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'pending', exact: true })).toBeHidden();
+  await expect(page.getByRole('button', { name: 'clothing', exact: true })).toBeHidden();
   await page.getByRole('button', { name: 'Show details' }).click();
   if (info.project.name === 'mobile') {
     await page.getByRole('tab', { name: 'route', exact: true }).click();
