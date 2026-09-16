@@ -1,19 +1,27 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { parseGear, parseWaypoints } from '../src/lib/dataValidation';
+import { parseGear, parseWaypoints, parseItinerary } from '../src/lib/dataValidation';
 import { computeSegmentMetrics } from '../src/lib/routeUtils';
 import { totalWeight } from '../src/lib/weightUtils';
 
 const gear = readFileSync('public/data/kalanag/gear-manifest.csv', 'utf8');
 const route = JSON.parse(readFileSync('public/data/kalanag/route-waypoints.json', 'utf8'));
+const itinerary = readFileSync('public/data/kalanag/itinerary.csv', 'utf8');
 test('shipped data validates and weights include quantities', () => {
   assert.equal(parseWaypoints(route).waypoints.length, 3);
   assert.equal(parseGear(gear).length, 48);
+  assert.equal(parseItinerary(itinerary).length, 15);
   assert.equal(totalWeight([{ weight_g: 100, qty: 3 }]), 300);
 });
 test('invalid CSV enums, quantities, weights and headers are rejected', () => {
   for (const bad of [gear.replace('580,1', '580,0'), gear.replace('1482,1', '-1,1'), gear.replace('pending,critical', 'confirmed,critical'), gear.replace('weight_g', 'weight'), gear.replace(',all but one\n', ',sometimes\n')]) assert.throws(() => parseGear(bad));
+});
+test('invalid itinerary days, dates, types and duplicate days are rejected', () => {
+  for (const bad of [itinerary.replace('1,2026-09-20', '0,2026-09-20'), itinerary.replace('2026-09-21', '21-09-2026'), itinerary.replace('2,2026-09-21,Sankri', '1,2026-09-21,Sankri'), itinerary.replace(',drive,8-10 hrs', ',flight,8-10 hrs'), itinerary.replace('day,date,route', 'day,when,route')]) assert.throws(() => parseItinerary(bad));
+  const parsed = parseItinerary(itinerary);
+  assert.equal(parsed[0].altitude_m, 1906);
+  assert.equal(parsed[14].altitude_m, undefined);
 });
 test('duplicate distances and invalid coordinates are rejected', () => {
   const invalid = structuredClone(route); invalid.waypoints[1].distance_from_start_km = 0;

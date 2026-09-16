@@ -1,6 +1,7 @@
 item_name,category,weight_g,qty,status,priority,in_rucksack
 Half Sleeved Base Layer,clothing,160,3,pending,critical,all but one
 Full Sleeved Base Layer,clothing,160,3,pending,critical,yes
+Thermals pair,clothing,205,1,pending,critical,yes
 Underwear,clothing,75,3,pending,critical,all but one
 Woollen Socks,clothing,60,3,pending,critical,all but one
 Cotton Socks,clothing,60,3,pending,critical,yes
@@ -10,40 +11,39 @@ Light Trousers,clothing,245,1,pending,optional,yes
 Fleece,clothing,320,1,pending,critical,yes
 Camp Jacket,clothing,510,1,pending,critical,yes
 Boots,clothing,1482,1,pending,critical,no
-Cap,clothing,78,1,pending,optional,no
-Balaclava,clothing,78,1,pending,optional,yes
-Glasses/Sunglasses,clothing,31,1,pending,optional,no
 Ski Gloves,clothing,190,1,pending,critical,yes
 Woollen Gloves,clothing,57,1,pending,critical,yes
-Thermals pair,clothing,205,1,pending,critical,yes
+Balaclava,clothing,78,1,pending,optional,yes
+Cap,clothing,78,1,pending,optional,no
+Glasses/Sunglasses,clothing,31,1,pending,optional,no
 Arm Sleeves,clothing,31,2,pending,optional,all but one
-Carabiner,technical,5,1,pending,optional,yes
 Trekking Pole,technical,200,1,pending,optional,no
-Toilet Paper,medical,55,2,pending,critical,yes
-Sunscreen,medical,31,1,pending,critical,yes
-Lip Balm,medical,15,1,pending,critical,yes
-Toothbrush & Toothpaste,medical,56,1,pending,critical,yes
-Sanitizer,medical,41,1,pending,critical,yes
-Volini,medical,35,1,pending,critical,yes
-Water,food,1000,2,pending,critical,yes
-Glucovita,food,167,2,pending,optional,yes
-Energy Gel,food,35,15,pending,optional,all but one
+Carabiner,technical,5,1,pending,optional,yes
 Phone,electronics,233,1,pending,critical,no
 Lens,electronics,65,1,pending,optional,no
 Powerbank (27000mAh),electronics,549,1,pending,critical,yes
 Head Torch,electronics,55,1,pending,critical,yes
 Garmin Instinct 2X Solar,electronics,67,1,pending,critical,no
-Handkerchief,misc,20,7,pending,optional,all but one
+Sunscreen,medical,31,1,pending,critical,yes
+Lip Balm,medical,15,1,pending,critical,yes
+Toothbrush & Toothpaste,medical,56,1,pending,critical,yes
+Sanitizer,medical,41,1,pending,critical,yes
+Toilet Paper,medical,55,2,pending,critical,yes
+Volini,medical,35,1,pending,critical,yes
+Water,food,1000,2,pending,critical,yes
+Glucovita,food,167,2,pending,optional,yes
+Energy Gel,food,35,15,pending,optional,all but one
 Rucksack,misc,1755,1,pending,critical,yes
-Documents & Cash,misc,45,1,pending,critical,yes
-Bottle,misc,135,1,pending,critical,yes
 Hydration Bag,misc,120,1,pending,optional,yes
-Packing Cubes,misc,0,1,pending,optional,yes
+Bottle,misc,135,1,pending,critical,yes
 Cup,misc,100,1,pending,optional,yes
 Tiffin & Spoon,misc,75,1,pending,optional,yes
+Packing Cubes,misc,0,1,pending,optional,yes
 Hand Towel,misc,43,2,pending,optional,yes
-Deodorant,misc,70,1,pending,optional,yes
 Bin Bags,misc,5,5,pending,optional,yes
 Extra Rain Cover,misc,120,1,pending,optional,yes
-Uno Flip,misc,155,1,pending,optional,yes
+Documents & Cash,misc,45,1,pending,critical,yes
+Deodorant,misc,70,1,pending,optional,yes
+Handkerchief,misc,20,7,pending,optional,all but one
 Perfume,misc,130,1,pending,optional,yes
+Uno Flip,misc,155,1,pending,optional,yes

@@ -8,11 +8,12 @@ monospace interface with orange/cyan accents.
 - `src/lib/expeditions.ts` is the expedition registry and initial map camera source.
 - `src/app/page.tsx` lists expeditions. `[expedition]/page.tsx` generates registered
   expedition pages at build time; unknown slugs are not exported.
-- Each expedition owns `public/data/<slug>/route.gpx`, `route-waypoints.json`, and
-  `gear-manifest.csv`. Adding an expedition requires a registry entry and these files.
+- Each expedition owns `public/data/<slug>/route.gpx`, `route-waypoints.json`,
+  `gear-manifest.csv`, and `itinerary.csv`. Adding an expedition requires a
+  registry entry and these files.
 - `SplitLayout` provides expedition/map context and responsive panel state. At
-  widths below 768px details use a bottom sheet with Route/Gear tabs. Wider screens
-  use a side panel. Keep feeds mounted so filters survive panel changes.
+  widths below 768px details use a bottom sheet with Route/Itinerary/Gear tabs.
+  Wider screens use a side panel. Keep feeds mounted so filters survive panel changes.
 - `useExpeditionData` shares file requests by URL and ignores obsolete responses.
   `dataValidation.ts` validates authored CSV/JSON before rendering.
 - GPX geometry supplies the map route. Waypoint JSON supplies the elevation profile,
@@ -24,6 +25,13 @@ Gear CSV columns: `item_name,category,weight_g,qty,status,priority`.
 Categories: clothing, shelter, technical, navigation, medical, food, electronics, misc.
 Status: packed/pending. Priority: critical/optional. Weight must be finite and
 nonnegative; quantity must be a positive integer.
+
+Itinerary CSV columns: `day,date,route,altitude_m,type,duration,accommodation,network,notes`.
+Type: drive/trek/mixed/mountaineering. `day` must be a unique positive integer;
+`date` is `YYYY-MM-DD`; `altitude_m` may be empty. Itinerary days are trip-specific
+planning data reconstructed from an operator's published schedule, not a verified
+route — treat dates, durations and network status as estimates to confirm before
+departure, same as the Kalanag planning outline.
 
 Waypoints require unique IDs, valid coordinates, elevation, camp type and unique,
 nonnegative `distance_from_start_km`. See `src/types/route.ts` and the Kalanag JSON.
