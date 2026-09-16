@@ -1,31 +1,49 @@
-item_name,category,weight_g,qty,status,priority
-Down Jacket,clothing,650,1,packed,critical
-Hardshell Jacket,clothing,480,1,packed,critical
-Softshell Pants,clothing,320,1,packed,critical
-Waterproof Pants,clothing,280,1,pending,critical
-Thermal Base Layer Top,clothing,180,2,packed,critical
-Thermal Base Layer Bottom,clothing,160,2,packed,critical
-Down Sleeping Bag (-20C),shelter,1350,1,packed,critical
-4-Season Tent,shelter,1800,1,pending,critical
-Sleeping Pad,shelter,390,1,packed,critical
-Crampons,technical,1200,1,pending,critical
-Ice Axe,technical,640,1,packed,critical
-Harness,technical,430,1,packed,critical
-Rope 50m,technical,2800,1,pending,critical
-Carabiners,technical,260,6,packed,critical
-Helmet,technical,320,1,packed,critical
-Trekking Poles,technical,480,2,packed,optional
-Headlamp,electronics,95,2,packed,critical
-Satellite Communicator,electronics,150,1,packed,critical
-Solar Charger,electronics,220,1,packed,optional
-GPS Device,navigation,195,1,packed,critical
-Topographic Map,navigation,80,2,packed,critical
-Compass,navigation,35,1,packed,critical
-First Aid Kit,medical,450,1,packed,critical
-Altitude Medication,medical,80,1,pending,critical
-Blister Treatment,medical,60,1,packed,optional
-High-Altitude Food,food,3200,1,pending,critical
-Cooking Stove,food,430,1,packed,critical
-Fuel Canisters,food,390,2,pending,critical
-Water Purification Tablets,food,45,1,packed,critical
-Insulated Water Bottle,food,280,2,packed,critical
+item_name,category,weight_g,qty,status,priority,in_rucksack
+Half Sleeved Base Layer,clothing,160,3,pending,critical,all but one
+Full Sleeved Base Layer,clothing,160,3,pending,critical,yes
+Underwear,clothing,75,3,pending,critical,all but one
+Woollen Socks,clothing,60,3,pending,critical,all but one
+Cotton Socks,clothing,60,3,pending,critical,yes
+Summit Trousers,clothing,580,1,pending,critical,yes
+Cargo Trousers,clothing,580,1,pending,critical,all but one
+Light Trousers,clothing,245,1,pending,optional,yes
+Fleece,clothing,320,1,pending,critical,yes
+Camp Jacket,clothing,510,1,pending,critical,yes
+Boots,clothing,1482,1,pending,critical,no
+Cap,clothing,78,1,pending,optional,no
+Balaclava,clothing,78,1,pending,optional,yes
+Glasses/Sunglasses,clothing,31,1,pending,optional,no
+Ski Gloves,clothing,190,1,pending,critical,yes
+Woollen Gloves,clothing,57,1,pending,critical,yes
+Thermals pair,clothing,205,1,pending,critical,yes
+Arm Sleeves,clothing,31,2,pending,optional,all but one
+Carabiner,technical,5,1,pending,optional,yes
+Trekking Pole,technical,200,1,pending,optional,no
+Toilet Paper,medical,55,2,pending,critical,yes
+Sunscreen,medical,31,1,pending,critical,yes
+Lip Balm,medical,15,1,pending,critical,yes
+Toothbrush & Toothpaste,medical,56,1,pending,critical,yes
+Sanitizer,medical,41,1,pending,critical,yes
+Volini,medical,35,1,pending,critical,yes
+Water,food,1000,2,pending,critical,yes
+Glucovita,food,167,2,pending,optional,yes
+Energy Gel,food,35,15,pending,optional,all but one
+Phone,electronics,233,1,pending,critical,no
+Lens,electronics,65,1,pending,optional,no
+Powerbank (27000mAh),electronics,549,1,pending,critical,yes
+Head Torch,electronics,55,1,pending,critical,yes
+Garmin Instinct 2X Solar,electronics,67,1,pending,critical,no
+Handkerchief,misc,20,7,pending,optional,all but one
+Rucksack,misc,1755,1,pending,critical,yes
+Documents & Cash,misc,45,1,pending,critical,yes
+Bottle,misc,135,1,pending,critical,yes
+Hydration Bag,misc,120,1,pending,optional,yes
+Packing Cubes,misc,0,1,pending,optional,yes
+Cup,misc,100,1,pending,optional,yes
+Tiffin & Spoon,misc,75,1,pending,optional,yes
+Hand Towel,misc,43,2,pending,optional,yes
+Deodorant,misc,70,1,pending,optional,yes
+Bin Bags,misc,5,5,pending,optional,yes
+Extra Rain Cover,misc,120,1,pending,optional,yes
+Uno Flip,misc,155,1,pending,optional,yes
+Perfume,misc,130,1,pending,optional,yes

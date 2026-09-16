@@ -3,15 +3,16 @@ import type { GearItem } from '@/types/gear';
 import type { RouteWaypointsFile } from '@/types/route';
 
 const categories = ['clothing', 'shelter', 'navigation', 'food', 'medical', 'technical', 'electronics', 'misc'];
+const placements = ['yes', 'no', 'all but one'];
 function finite(value: unknown): value is number { return typeof value === 'number' && Number.isFinite(value); }
 export function parseGear(text: string): GearItem[] {
   const result = Papa.parse<Record<string, string>>(text, { header: true, skipEmptyLines: 'greedy' });
   if (result.errors.length) throw new Error('Invalid gear CSV: ' + result.errors[0].message);
-  const required = ['item_name', 'category', 'weight_g', 'qty', 'status', 'priority'];
+  const required = ['item_name', 'category', 'weight_g', 'qty', 'status', 'priority', 'in_rucksack'];
   if (!required.every(key => result.meta.fields?.includes(key))) throw new Error('Gear CSV is missing required columns');
   return result.data.map((row, index) => {
     const weight = Number(row.weight_g), qty = Number(row.qty);
-    if (!row.item_name?.trim() || !categories.includes(row.category) || !row.weight_g?.trim() || !finite(weight) || weight < 0 || !row.qty?.trim() || !Number.isInteger(qty) || qty < 1 || !['packed', 'pending'].includes(row.status) || !['critical', 'optional'].includes(row.priority)) throw new Error(`Invalid gear values on row ${index + 2}`);
+    if (!row.item_name?.trim() || !categories.includes(row.category) || !row.weight_g?.trim() || !finite(weight) || weight < 0 || !row.qty?.trim() || !Number.isInteger(qty) || qty < 1 || !['packed', 'pending'].includes(row.status) || !['critical', 'optional'].includes(row.priority) || !placements.includes(row.in_rucksack)) throw new Error(`Invalid gear values on row ${index + 2}`);
     return { ...row, item_name: row.item_name.trim(), weight_g: weight, qty } as unknown as GearItem;
   });
 }
