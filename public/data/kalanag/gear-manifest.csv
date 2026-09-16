@@ -1,49 +1,48 @@
-item_name,category,weight_g,qty,status,priority,in_rucksack
-Half Sleeved Base Layer,clothing,160,3,pending,critical,all but one
-Full Sleeved Base Layer,clothing,160,3,pending,critical,yes
-Thermals pair,clothing,205,1,pending,critical,yes
-Underwear,clothing,75,3,pending,critical,all but one
-Woollen Socks,clothing,60,3,pending,critical,all but one
-Cotton Socks,clothing,60,3,pending,critical,yes
-Summit Trousers,clothing,580,1,pending,critical,yes
-Cargo Trousers,clothing,580,1,pending,critical,all but one
-Light Trousers,clothing,245,1,pending,optional,yes
-Fleece,clothing,320,1,pending,critical,yes
-Camp Jacket,clothing,510,1,pending,critical,yes
-Boots,clothing,1482,1,pending,critical,no
-Ski Gloves,clothing,190,1,pending,critical,yes
-Woollen Gloves,clothing,57,1,pending,critical,yes
-Balaclava,clothing,78,1,pending,optional,yes
-Cap,clothing,78,1,pending,optional,no
-Glasses/Sunglasses,clothing,31,1,pending,optional,no
-Arm Sleeves,clothing,31,2,pending,optional,all but one
-Trekking Pole,technical,200,1,pending,optional,no
-Carabiner,technical,5,1,pending,optional,yes
-Phone,electronics,233,1,pending,critical,no
-Lens,electronics,65,1,pending,optional,no
-Powerbank (27000mAh),electronics,549,1,pending,critical,yes
-Head Torch,electronics,55,1,pending,critical,yes
-Garmin Instinct 2X Solar,electronics,67,1,pending,critical,no
-Sunscreen,medical,31,1,pending,critical,yes
-Lip Balm,medical,15,1,pending,critical,yes
-Toothbrush & Toothpaste,medical,56,1,pending,critical,yes
-Sanitizer,medical,41,1,pending,critical,yes
-Toilet Paper,medical,55,2,pending,critical,yes
-Volini,medical,35,1,pending,critical,yes
-Water,food,1000,2,pending,critical,yes
-Glucovita,food,167,2,pending,optional,yes
-Energy Gel,food,35,15,pending,optional,all but one
-Rucksack,misc,1755,1,pending,critical,yes
-Hydration Bag,misc,120,1,pending,optional,yes
-Bottle,misc,135,1,pending,critical,yes
-Cup,misc,100,1,pending,optional,yes
-Tiffin & Spoon,misc,75,1,pending,optional,yes
-Packing Cubes,misc,0,1,pending,optional,yes
-Hand Towel,misc,43,2,pending,optional,yes
-Bin Bags,misc,5,5,pending,optional,yes
-Extra Rain Cover,misc,120,1,pending,optional,yes
-Documents & Cash,misc,45,1,pending,critical,yes
-Deodorant,misc,70,1,pending,optional,yes
-Handkerchief,misc,20,7,pending,optional,all but one
-Perfume,misc,130,1,pending,optional,yes
-Uno Flip,misc,155,1,pending,optional,yes
+item_name,category,weight_g,qty,status,in_rucksack
+Half Sleeved Base Layer,clothing,145,4,pending,all but one
+Full Sleeved Base Layer,clothing,280,1,pending,yes
+Thermals pair,clothing,420,1,pending,yes
+Underwear,clothing,80,5,pending,yes
+Woollen Socks,clothing,60,4,pending,all but one
+Cotton Socks,clothing,38,3,pending,yes
+Trousers,clothing,580,1,pending,yes
+Joggers,clothing,225,4,pending,yes
+Synthetic Shorts,clothing,190,1,pending,no
+Fleece,clothing,320,1,pending,yes
+Decathlon Quechua SH100 X-Warm,clothing,930,1,pending,yes
+Boots,clothing,1482,1,pending,no
+Ski Gloves,clothing,185,1,pending,yes
+Woollen Gloves,clothing,57,1,pending,yes
+Balaclava,clothing,78,1,pending,yes
+Cap,clothing,85,1,pending,yes
+Woollen Cap,clothing,100,1,pending,yes
+Glasses/Sunglasses,clothing,31,1,pending,no
+Arm Sleeves,clothing,31,2,pending,yes
+Trekking Pole,technical,355,1,pending,no
+Carabiner,technical,5,1,pending,yes
+Phone,electronics,233,1,pending,no
+Lens,electronics,65,1,pending,no
+Powerbank (27000mAh),electronics,549,1,pending,yes
+Head Torch,electronics,100,1,pending,yes
+Wall socket and cables,electronics,75,1,pending,yes
+Garmin Instinct 2X Solar,electronics,67,1,pending,no
+Sunscreen,medical,31,1,pending,yes
+Lip Balm,medical,15,1,pending,yes
+Toothbrush & Toothpaste,medical,56,1,pending,yes
+Sanitizer,medical,42,1,pending,yes
+Toilet Paper,medical,55,1,pending,yes
+Volini,medical,34,1,pending,yes
+Water,food,1000,3,pending,yes
+Glucovita bolts in container,food,167,1,pending,yes
+Energy Gel,food,35,15,pending,yes
+Rucksack,misc,1755,1,pending,yes
+Hydration Bag,misc,120,1,pending,yes
+Bottle,misc,135,1,pending,yes
+Cup,misc,100,1,pending,yes
+Tiffin & Spoon,misc,75,1,pending,yes
+Packing Cubes,misc,95,6,pending,yes
+Hand Towel,misc,43,1,pending,yes
+Bin Bags,misc,5,1,pending,yes
+Documents & Cash,misc,45,1,pending,yes
+Deodorant,misc,70,1,pending,yes
+Handkerchief,misc,20,7,pending,all but one

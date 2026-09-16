@@ -3,19 +3,29 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { parseGear, parseWaypoints, parseItinerary } from '../src/lib/dataValidation';
 import { computeSegmentMetrics } from '../src/lib/routeUtils';
-import { totalWeight } from '../src/lib/weightUtils';
+import { totalWeight, rucksackWeight, nonRucksackWeight } from '../src/lib/weightUtils';
 
 const gear = readFileSync('public/data/kalanag/gear-manifest.csv', 'utf8');
 const route = JSON.parse(readFileSync('public/data/kalanag/route-waypoints.json', 'utf8'));
 const itinerary = readFileSync('public/data/kalanag/itinerary.csv', 'utf8');
 test('shipped data validates and weights include quantities', () => {
   assert.equal(parseWaypoints(route).waypoints.length, 3);
-  assert.equal(parseGear(gear).length, 48);
+  assert.equal(parseGear(gear).length, 47);
   assert.equal(parseItinerary(itinerary).length, 15);
   assert.equal(totalWeight([{ weight_g: 100, qty: 3 }]), 300);
 });
 test('invalid CSV enums, quantities, weights and headers are rejected', () => {
-  for (const bad of [gear.replace('580,1', '580,0'), gear.replace('1482,1', '-1,1'), gear.replace('pending,critical', 'confirmed,critical'), gear.replace('weight_g', 'weight'), gear.replace(',all but one\n', ',sometimes\n')]) assert.throws(() => parseGear(bad));
+  for (const bad of [gear.replace('580,1', '580,0'), gear.replace('1482,1', '-1,1'), gear.replace('Sunscreen,medical,31,1,pending,yes', 'Sunscreen,medical,31,1,confirmed,yes'), gear.replace('weight_g', 'weight'), gear.replace(',all but one\n', ',sometimes\n')]) assert.throws(() => parseGear(bad));
+});
+test('rucksack and non-rucksack weight totals split "all but one" rows to one excluded unit', () => {
+  const items = [
+    { weight_g: 100, qty: 3, in_rucksack: 'yes' as const },
+    { weight_g: 50, qty: 4, in_rucksack: 'all but one' as const },
+    { weight_g: 20, qty: 2, in_rucksack: 'no' as const },
+  ];
+  assert.equal(rucksackWeight(items), 100 * 3 + 50 * 3);
+  assert.equal(nonRucksackWeight(items), 50 * 1 + 20 * 2);
+  assert.equal(rucksackWeight(items) + nonRucksackWeight(items), totalWeight(items));
 });
 test('invalid itinerary days, dates, types and duplicate days are rejected', () => {
   for (const bad of [itinerary.replace('1,2026-09-20', '0,2026-09-20'), itinerary.replace('2026-09-21', '21-09-2026'), itinerary.replace('2,2026-09-21,Sankri', '1,2026-09-21,Sankri'), itinerary.replace(',drive,8-10 hrs', ',flight,8-10 hrs'), itinerary.replace('day,date,route', 'day,when,route')]) assert.throws(() => parseItinerary(bad));
