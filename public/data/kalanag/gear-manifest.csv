@@ -6,7 +6,7 @@ Underwear,clothing,80,5,pending,yes
 Woollen Socks,clothing,60,4,pending,all but one
 Cotton Socks,clothing,38,3,pending,yes
 Trousers,clothing,580,1,pending,yes
-Joggers,clothing,225,4,pending,yes
+Joggers,clothing,225,3,pending,yes
 Synthetic Shorts,clothing,190,1,pending,no
 Fleece,clothing,320,1,pending,yes
 Decathlon Quechua SH100 X-Warm,clothing,930,1,pending,yes
@@ -30,7 +30,7 @@ Sunscreen,medical,31,1,pending,yes
 Lip Balm,medical,15,1,pending,yes
 Toothbrush & Toothpaste,medical,56,1,pending,yes
 Sanitizer,medical,42,1,pending,yes
-Toilet Paper,medical,55,1,pending,yes
+Toilet Paper,medical,55,3,pending,yes
 Volini,medical,34,1,pending,yes
 Water,food,1000,3,pending,yes
 Glucovita bolts in container,food,167,1,pending,yes
@@ -40,9 +40,9 @@ Hydration Bag,misc,120,1,pending,yes
 Bottle,misc,135,1,pending,yes
 Cup,misc,100,1,pending,yes
 Tiffin & Spoon,misc,75,1,pending,yes
-Packing Cubes,misc,95,6,pending,yes
+Packing Cubes,misc,95,4,pending,yes
 Hand Towel,misc,43,1,pending,yes
-Bin Bags,misc,5,1,pending,yes
+Bin Bags,misc,5,5,pending,yes
 Documents & Cash,misc,45,1,pending,yes
 Deodorant,misc,70,1,pending,yes
 Handkerchief,misc,20,7,pending,all but one
