@@ -1,9 +1,11 @@
 import Papa from 'papaparse';
 import type { GearItem } from '@/types/gear';
 import type { RouteWaypointsFile } from '@/types/route';
+import type { ItineraryDay } from '@/types/itinerary';
 
 const categories = ['clothing', 'shelter', 'navigation', 'food', 'medical', 'technical', 'electronics', 'misc'];
 const placements = ['yes', 'no', 'all but one'];
+const itineraryTypes = ['drive', 'trek', 'mixed', 'mountaineering'];
 function finite(value: unknown): value is number { return typeof value === 'number' && Number.isFinite(value); }
 export function parseGear(text: string): GearItem[] {
   const result = Papa.parse<Record<string, string>>(text, { header: true, skipEmptyLines: 'greedy' });
@@ -35,4 +37,18 @@ export function parseWaypoints(value: unknown): RouteWaypointsFile {
     ids.add(w.id); distances.add(w.distance_from_start_km);
   }
   return data;
+}
+export function parseItinerary(text: string): ItineraryDay[] {
+  const result = Papa.parse<Record<string, string>>(text, { header: true, skipEmptyLines: 'greedy' });
+  if (result.errors.length) throw new Error('Invalid itinerary CSV: ' + result.errors[0].message);
+  const required = ['day', 'date', 'route', 'altitude_m', 'type', 'duration', 'accommodation', 'network', 'notes'];
+  if (!required.every(key => result.meta.fields?.includes(key))) throw new Error('Itinerary CSV is missing required columns');
+  const days = new Set<number>();
+  return result.data.map((row, index) => {
+    const day = Number(row.day);
+    const altitude = row.altitude_m?.trim() ? Number(row.altitude_m) : undefined;
+    if (!row.day?.trim() || !Number.isInteger(day) || day < 1 || days.has(day) || !/^\d{4}-\d{2}-\d{2}$/.test(row.date ?? '') || Number.isNaN(Date.parse(row.date)) || !row.route?.trim() || (altitude !== undefined && (!finite(altitude) || altitude < 0)) || !itineraryTypes.includes(row.type) || !row.duration?.trim() || !row.accommodation?.trim() || !row.network?.trim()) throw new Error(`Invalid itinerary values on row ${index + 2}`);
+    days.add(day);
+    return { ...row, day, altitude_m: altitude, route: row.route.trim(), notes: row.notes?.trim() || undefined } as unknown as ItineraryDay;
+  });
 }

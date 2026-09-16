@@ -1,0 +1,16 @@
+day,date,route,altitude_m,type,duration,accommodation,network,notes
+1,2026-09-20,Dehradun -> Sankri,1906,drive,8-10 hrs,Guest house (Sankri),Full until Purola then drops,
+2,2026-09-21,Sankri -> Taluka (drive) -> Seema,2560,mixed,Short drive + ~4-5 hrs trek,Dome tent (Seema),None - Sankri itself is spotty,Lunch stop at Gulling
+3,2026-09-22,Seema -> Ruinsara Tal,3350,trek,~5-6 hrs,Dome tent (Ruinsara Tal),None,
+4,2026-09-23,Ruinsara Tal -> Kyarkoti Base Camp,3500,trek,~4-5 hrs,Dome tent (Base Camp),None,Porters carry cargo from here
+5,2026-09-24,Base Camp -> Camp 1 -> Base Camp (load ferry),4600,mountaineering,~4 hrs each way,Dome tent (Base Camp),None,Load ferry - sleeps back at Base Camp
+6,2026-09-25,Base Camp -> Camp 1,4600,mountaineering,~4 hrs,Dome tent (Camp 1),None,Move up and stay
+7,2026-09-26,Camp 1 -> Camp 2 -> Camp 1 (load ferry),5100,mountaineering,~3 hrs each way,Dome tent (Camp 1),None,Load ferry - sleeps back at Camp 1
+8,2026-09-27,Camp 1 -> Camp 2,5100,mountaineering,~3 hrs,Dome tent (Camp 2),None,Move up and stay
+9,2026-09-28,Camp 2 -> Camp 3,5500,mountaineering,~4-6 hrs,Dome tent (Camp 3),None,Crevasse-crossing terrain
+10,2026-09-29,Camp 3 -> Summit -> back to Camp 3,6387,mountaineering,2 AM start; ~10-14 hrs round trip,Dome tent (Camp 3),None,Summit push
+11,2026-09-30,Reserve summit day,6387,mountaineering,Same as Day 10 if used,Dome tent (high camp),None,Only used if Day 10 was weathered out
+12,2026-10-01,Move to Base Camp,3500,mountaineering,~5-7 hrs,Dome tent (Base Camp),None,Multi-camp descent
+13,2026-10-02,Base Camp -> Seema,2560,trek,5 hrs,Dome tent (Seema),None,
+14,2026-10-03,Seema -> Sankri,1906,trek,4 hrs,Guest house (Sankri),Spotty at best,
+15,2026-10-04,Sankri -> Dehradun,,drive,8 hrs,Trip ends (Dehradun),Returns gradually,
