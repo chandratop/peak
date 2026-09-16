@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 import type { GearItem } from '@/types/gear';
-import { formatWeight, totalWeight } from '@/lib/weightUtils';
+import { formatWeight, totalWeight, rucksackWeight, nonRucksackWeight } from '@/lib/weightUtils';
 
 interface GearStatsProps {
   items: GearItem[];
@@ -11,21 +11,22 @@ interface GearStatsProps {
 export default function GearStats({ items }: GearStatsProps) {
   const stats = useMemo(() => {
     const packed = items.filter((i) => i.status === 'packed');
-    const criticalUnpacked = items.filter(
-      (i) => i.priority === 'critical' && i.status === 'pending'
-    );
     const total = totalWeight(items);
     const packedW = totalWeight(packed);
     const packedPct = items.length > 0 ? Math.round((packed.length / items.length) * 100) : 0;
+    const rucksackW = rucksackWeight(items);
+    const nonRucksackW = nonRucksackWeight(items);
 
-    return { total, packedW, packedPct, criticalUnpacked: criticalUnpacked.length };
+    return { total, packedW, packedPct, rucksackW, nonRucksackW };
   }, [items]);
 
   const cells = [
     { label: 'TOTAL WEIGHT', value: formatWeight(stats.total) },
     { label: 'PACKED WEIGHT', value: formatWeight(stats.packedW) },
+    { label: 'RUCKSACK WEIGHT', value: formatWeight(stats.rucksackW) },
+    { label: 'NON-RUCKSACK WEIGHT', value: formatWeight(stats.nonRucksackW) },
     { label: 'ITEM TYPES PACKED', value: `${stats.packedPct}%` },
-    { label: 'CRITICAL NEEDED', value: String(stats.criticalUnpacked), alert: stats.criticalUnpacked > 0 },
+    { label: 'ITEMS', value: String(items.length) },
   ];
 
   return (

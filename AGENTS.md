@@ -19,12 +19,16 @@ monospace interface with orange/cyan accents.
 - GPX geometry supplies the map route. Waypoint JSON supplies the elevation profile,
   summary and segment estimates. These are separate sources, not interchangeable.
 - Gear weight is unit grams × quantity. Packing percentage counts manifest rows.
+  Rucksack vs non-rucksack weight totals split an `all but one` row as
+  `qty - 1` packed and 1 unit external; `yes` counts fully in the rucksack,
+  `no` counts fully outside it.
 
 ## Data contracts
-Gear CSV columns: `item_name,category,weight_g,qty,status,priority`.
+Gear CSV columns: `item_name,category,weight_g,qty,status,in_rucksack`.
 Categories: clothing, shelter, technical, navigation, medical, food, electronics, misc.
-Status: packed/pending. Priority: critical/optional. Weight must be finite and
-nonnegative; quantity must be a positive integer.
+Status: packed/pending. `in_rucksack`: yes/no/all but one — see the weight-split
+rule above. Weight must be finite and nonnegative; quantity must be a positive
+integer.
 
 Itinerary CSV columns: `day,date,route,altitude_m,type,duration,accommodation,network,notes`.
 Type: drive/trek/mixed/mountaineering. `day` must be a unique positive integer;

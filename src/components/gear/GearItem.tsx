@@ -14,13 +14,7 @@ const PLACEMENT_LABEL: Record<RucksackPlacement, string> = {
 
 export default function GearItem({ item }: GearItemProps) {
   return (
-    <div
-      className={`flex items-center justify-between py-1.5 px-2 border-b border-neutral-900 hover:bg-neutral-950 transition-colors ${
-        item.priority === 'critical' && item.status === 'pending'
-          ? 'border-l border-l-neon-orange/30'
-          : ''
-      }`}
-    >
+    <div className="flex items-center justify-between py-1.5 px-2 border-b border-neutral-900 hover:bg-neutral-950 transition-colors">
       <div className="flex-1 min-w-0 mr-2">
         <p className="text-xs text-white font-mono truncate">{item.item_name}</p>
         <p className="text-2xs text-neutral-600 font-mono uppercase tracking-widest truncate">
@@ -34,7 +28,7 @@ export default function GearItem({ item }: GearItemProps) {
         <span className="text-2xs text-neutral-400 font-mono tabular-nums w-14 text-right">
           {formatWeight(item.weight_g * item.qty)}
         </span>
-        <StatusBadge status={item.status} priority={item.priority} />
+        <StatusBadge status={item.status} />
       </div>
     </div>
   );
