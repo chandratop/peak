@@ -10,7 +10,7 @@ const route = JSON.parse(readFileSync('public/data/kalanag/route-waypoints.json'
 const itinerary = readFileSync('public/data/kalanag/itinerary.csv', 'utf8');
 test('shipped data validates and weights include quantities', () => {
   assert.equal(parseWaypoints(route).waypoints.length, 3);
-  assert.equal(parseGear(gear).length, 47);
+  assert.equal(parseGear(gear).length, 48);
   assert.equal(parseItinerary(itinerary).length, 15);
   assert.equal(totalWeight([{ weight_g: 100, qty: 3 }]), 300);
 });
